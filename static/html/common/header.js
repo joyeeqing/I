@@ -56,14 +56,7 @@
             </div>
             <div class="about">
 	            <ul>
-	                {@each data as item}
-			            <li>
-				            <a href="#">
-					            <img src=${item.pic_link}>
-					            <span class="about_name">${item_name}</span>
-				            </a>
-				        </li>
-		            {@/each}
+	                
 	            </ul>
             </div>
 		</div>

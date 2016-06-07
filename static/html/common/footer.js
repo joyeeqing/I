@@ -127,15 +127,6 @@
             about.hide();
             lis.eq(index).addClass("is");
         }else{
-            request.post(
-                _api.listdepartment,
-                {},
-                function(res){
-                    console.log(res);
-                    $(".about>ul").html(juicer(funcTpl(tpl).res));
-                }
-            );
-            $(".about>ul").html();
 
             li_last.addClass("is")
                    .parent().siblings().children("li")
