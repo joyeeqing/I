@@ -1,0 +1,187 @@
+@charset "UTF-8";
+/**
+ *  all of global scss
+ */
+@import url(lib/reset.css);
+/*to 980px center*/
+.global-center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 980px; }
+
+/*for ie6/7*/
+.inline-block {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1; }
+
+/*to 980px center*/
+.global-center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 980px; }
+
+/*for ie6/7*/
+.inline-block {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1; }
+
+.common_header, .common_header .icon_logo, .common_footer {
+  margin: 0;
+  padding: 0; }
+
+.common_header {
+  width: 100%;
+  height: 94px;
+  position: relative; }
+  .common_header .icon_logo {
+    width: 164px;
+    height: 76px;
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    z-index: 999; }
+  .common_header .about {
+    display: none;
+    width: 1366px;
+    height: 385px;
+    background-color: #ddece7;
+    position: absolute;
+    z-index: 2; }
+    .common_header .about ul {
+      width: 1246px;
+      margin: 0 auto;
+      height: 385px; }
+      .common_header .about ul li {
+        float: left;
+        width: 345px;
+        height: 385px;
+        padding: 60px 0 90px 170px; }
+        .common_header .about ul li a {
+          display: block; }
+          .common_header .about ul li a img {
+            display: block; }
+          .common_header .about ul li a .about_name {
+            display: block;
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: #222;
+            width: 180px;
+            height: 30px;
+            line-height: 30px;
+            margin: 15px 0 0 10px; }
+
+.common_header_search {
+  width: 100%;
+  height: 56px;
+  background-color: #ffffff;
+  position: relative; }
+  .common_header_search #header_search {
+    width: 330px;
+    height: 25px;
+    font-size: 14px;
+    background-color: #e9e9e9;
+    border: 1px solid #dad9d9;
+    border-radius: 5px;
+    position: absolute;
+    top: 22px;
+    box-shadow: inset 4px 4px 4px #dad9d9;
+    left: 740px;
+    padding: 2px 3px; }
+  .common_header_search #icon_search {
+    width: 33px;
+    height: 25px;
+    position: absolute;
+    top: 22px;
+    left: 1090px; }
+
+.common_header_nav {
+  cursor: default;
+  width: 100%;
+  height: 38px;
+  background-color: #497d92; }
+  .common_header_nav .header_nav_list {
+    margin-left: 650px;
+    width: 570px;
+    height: 38px;
+    font-size: 16px; }
+    .common_header_nav .header_nav_list a li {
+      width: 90px;
+      height: 38px;
+      line-height: 38px;
+      float: left;
+      text-align: center;
+      margin-left: 5px;
+      color: #f8f4f4;
+      font-size: 16px;
+      letter-spacing: 1px;
+      font-family: "微软雅黑"; }
+    .common_header_nav .header_nav_list a .select, .common_header_nav .header_nav_list a .is {
+      color: #497d92;
+      background-color: #fefafa; }
+
+/*to 980px center*/
+.global-center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 980px; }
+
+/*for ie6/7*/
+.inline-block {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1; }
+
+.common_header, .common_header .icon_logo, .common_footer {
+  padding: 0;
+  margin: 0; }
+
+.common_footer {
+  width: 100%;
+  height: 297px;
+  position: absolute; }
+  .common_footer .icon_logo {
+    width: 164px;
+    height: 76px;
+    float: left;
+    margin-top: 40px;
+    margin-left: 100px; }
+
+.common_footer_list {
+  width: 100%;
+  height: 200px;
+  background-color: #497d92; }
+  .common_footer_list .footer_list {
+    padding-top: 50px;
+    margin-left: 600px;
+    width: 700px;
+    height: 50px; }
+    .common_footer_list .footer_list li {
+      float: left;
+      width: 200px;
+      height: 35px;
+      line-height: 35px;
+      text-align: right; }
+      .common_footer_list .footer_list li img {
+        margin-right: 30px; }
+      .common_footer_list .footer_list li a {
+        display: block;
+        color: #ffffff;
+        font-size: 16px;
+        letter-spacing: 1px;
+        font-family: "微软雅黑"; }
+      .common_footer_list .footer_list li a:hover {
+        color: #202873; }
+
+.common_footer_ps {
+  width: 100%;
+  height: 97px;
+  background-color: #7b8b91;
+  color: #fff;
+  line-height: 97px;
+  letter-spacing: 1px;
+  font-weight: normal;
+  text-align: center; }
+
+/*# sourceMappingURL=maps/global.css.map */

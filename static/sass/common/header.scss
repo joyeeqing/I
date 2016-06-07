@@ -1,0 +1,124 @@
+@import "global-set";
+$nav-font-size: 16px;
+$bg-color: #ffffff;
+$bg-color1:#497d92;
+$logo-w:164px;
+$logo-h:76px;
+%px{
+  margin:0;
+  padding:0;
+}
+.common_header{
+  width:100%;
+  height:94px;
+  @extend %px;
+  position:relative;
+  .icon_logo{
+    @extend %px;
+    width:164px;
+    height:76px;
+    position:absolute;
+    top:10px;
+    left:100px;
+    z-index:999;
+  }
+  .about{
+    display:none;
+    width:1366px;
+    height:385px;
+    background-color:#ddece7;
+    position:absolute;
+    z-index:2;
+    ul{
+       width:1246px;
+       margin:0 auto;
+       height:385px;
+       li{
+         float:left;
+         width:345px;
+         height:385px;
+         padding:60px 0 90px 170px;
+         a{
+           display:block;
+           img{
+             display:block;
+           }
+           .about_name{
+               display:block;
+               font-size:24px;
+               letter-spacing:1px;
+               color:#222;
+               width:180px;
+               height:30px;
+               line-height:30px;
+               margin:15px 0 0 10px;
+            }
+           }
+       }
+    }
+  }
+}
+
+.common_header_search{
+  width:100%;
+  height:56px;
+  background-color:$bg-color;
+  position:relative;
+  #header_search{
+    width:330px;
+    height:25px;
+    font-size:14px;
+    background-color:#e9e9e9;
+    border:1px solid #dad9d9; 
+    border-radius:5px;
+    position:absolute;
+    top:22px;
+    box-shadow:inset 4px 4px 4px #dad9d9;
+    left:740px;
+    padding:2px 3px;
+  }
+  #icon_search{
+    width:33px;
+    height:25px;
+    position:absolute;
+    top:22px;
+    left:1090px;
+  }
+}
+
+.common_header_nav{
+  cursor:default;
+  width:100%;
+  height:38px;
+  background-color:$bg-color1;
+  .header_nav_list{
+      margin-left:650px;
+      width:570px;
+      height:38px;
+      font-size:16px;
+      a{
+        li{
+        width:90px;
+        height:38px; 
+        line-height:38px;
+        float:left;
+        text-align:center;
+        margin-left:5px;
+        color:#f8f4f4;
+        font-size:16px;
+        letter-spacing:1px;
+        font-family:$family;
+        
+       }
+      .select,.is{
+
+         color:#497d92;
+         background-color:#fefafa;
+      }
+
+      }
+      
+  }
+}
+
+
