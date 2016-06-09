@@ -30,7 +30,8 @@
 					'</script>'+
 					'<script src="'+temp+'/js/lib/jquery.js"></script>'+
 					'<script src="'+temp+'/js/modules/api.js"></script>'+
-					
+					'<script src="'+temp+'/js/lib/juicer.js"></script>'+
+
 				'</head>'+
 				'<body>';
 				
@@ -50,7 +51,7 @@
 		            <a href="index.html"><li>首页</li></a>
 		            <a href="project.html"><li>研究成果</li></a>
 		            <a href="news.html"><li>新闻动态</li></a>
-		            <a href="#"><li>论文专著</li></a>
+		            <a href="essay_list.html"><li>论文专著</li></a>
 		            <a href="#"><li>相关单位</li></a>
 	            </ul>
             </div>

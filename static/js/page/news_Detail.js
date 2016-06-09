@@ -5,7 +5,7 @@
 require.config({
 	baseUrl:MIS.STATIC_ROOT
 });
-require(['lib/jquery', 'util/request','util/funcTpl'], function($, request,funcTpl) {
+require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, request,funcTpl) {
     var id;
 	var new_Detail={
 

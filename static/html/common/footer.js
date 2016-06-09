@@ -15,14 +15,14 @@
             <div class="common_footer_list">
                 <img src="/img/common/logo.png" class="icon_logo">
                 <ul class="footer_list">
-                    <li><a href="#"><img src="/img/common/leader.png">学术带头人</a></li>
-                    <li><a href="#"><img src="/img/common/member.png">团队成员</a></li>
+                    <li><a href="leader.html"><img src="/img/common/leader.png">学术带头人</a></li>
+                    <li><a href=""><img src="/img/common/member.png">团队成员</a></li>
                     <li><a href="news.html"><img src="/img/common/new.png">新闻动态</a></li>
                 </ul>
                 <ul class="footer_list">
-                    <li><a href="#"><img src="/img/common/gradu.png">已毕业成员</a></li>
+                    <li><a href=""><img src="/img/common/gradu.png">已毕业成员</a></li>
                     <li><a href="project.html"><img src="/img/common/disco.png">研究成果</a></li>
-                    <li><a href="#"><img src="/img/common/paper.png">论文专著</a></li>
+                    <li><a href="essay_list.html"><img src="/img/common/paper.png">论文专著</a></li>
                 </ul>
             </div>
             <div class="common_footer_ps">
@@ -103,6 +103,7 @@
          });
              
         });
+
     
     var tpl=function(){
         /*
@@ -110,14 +111,21 @@
                 <li>
                     <a href="#">
                         <img src=${item.pic_link}>
-                        <span class="about_name">${item_name}</span>
+                        <span class="about_name">${item.name}</span>
                     </a>
                 </li>
             {@/each}
         */
-    }
-    
-   
+    };
+
+    var tplToString=tpl.toString().replace(/^[^\/]+\/\*!?/, '').replace(/\*\/[^\/]+$/, '');
+
+    $.get(
+            _api.listdepartment,
+            function(res){
+                $(".about > ul").html(juicer(tplToString,res));
+            }
+        );
 
     // 点击相关页面时
     li_last.click(function(){
@@ -135,12 +143,6 @@
         }
     });
 
-   // 相关单位
-   /*about.find("li").hover(function(){
-       $(this).width("360px").height("400px");
-   },function(){
-       $(this).width("345px").height("385px");
-   });*/
 
 
 

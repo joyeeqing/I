@@ -6,57 +6,74 @@
 require.config({
 	baseUrl: MIS.STATIC_ROOT
 });
-require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, request,funcTpl) {
-	
+require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, request,funcTpl) {
+	var paperId;
 	var index = {
 		
 		init:function(){
-			
-	        //index.carousel();
-	        index.getCarousel();
+			  
+	        //index.getCarousel();
+	        $(".carousel").append(funcTpl(index.carouselTpl_1));
+	        index.carousel();
 	        index.getPaperData();
 	        index.getNewsData();
-	        // $(".carousel").append(funcTpl(index.carouselTpl));
-	        // $(".display > ul").append(funcTpl(index.disTpl));
-	        //$(".news").append(funcTpl(index.newTpl));
 	        index.news_look();
-
+            index.display();
 		},
         
-        /*轮播*/
+        /*无缝图片滚动*/
 		carousel:function(){
-           
-           var Imgs=$(".carousel").find(".pic"),
-               dis=$(".disc").find("li"),
+
+           var ulTag=$(".carousel > ul"),
+               liNum=ulTag.find("li").length,
+               i=0,
                timer,
-               i=0;
-               function handler(){
-           	    i++;
-	           	if(i>2){
-	           		i=0;
-	           	}
-	            Imgs.eq(i).show().siblings().hide();
-                dis.eq(i).addClass("selected").siblings().removeClass("selected");
+               Imgs=$(".carousel > ul").find("li");
+               dis=$(".disc").find("li");
+
            
-                }
+           function handler(){
+               i++;
+               if(i > liNum - 1){
+	               	i=0;
+               }
 
-           timer=setInterval(handler,1000);
+               if(i == 0){
+	                	ulTag.css({"margin-left":"0px"});
+	                }else{
+	                	ulTag.animate({"margin-left":-1366*i+"px"},500); 
+	                }
 
-           Imgs.on('mouseover',function(){
-           	   clearInterval(timer);
-               dis.click(function(){
-               	   var index=$(this).attr("index");
-	               $(this).addClass('selected').siblings().removeClass('selected');
-                   Imgs.eq(index).show().siblings().hide();
-               });
+	           	dis.eq(i).addClass("selected")
+	           	       .siblings().removeClass("selected");
+
+
+           }     
+           ulTag.width(1366*3);
+              
+           timer=setInterval(handler,2000);
+
+           /*鼠标移动触发事件*/
+           ulTag.on("mouseover",function(){
+           	    clearInterval(timer);
+
+                dis.click(function(){
+                    var _this=$(this);
+                    /*取得当前位置的图片*/
+                    i=_this.attr("index");
+	                _this.addClass('selected')
+	                     .siblings().removeClass('selected');
+                    ulTag.animate({"margin-left":i*-1366+'px'});
+                });
            }).on('mouseout',function(){
-               timer=setInterval(handler,1000);
+
+               timer=setInterval(handler,2000);
            });
 
            $(".circles").on('mouseover',function(){
-           	clearInterval(timer);
+	            clearInterval(timer);
            }).on('mouseout',function(){
-           	timer=setInterval(handler,1000);
+	            timer=setInterval(handler,2000);
            })
 	    
 		},
@@ -74,27 +91,46 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
             );
         },
            
-        
 
 		carouselTpl:function(){
 
 			/*
-			<div class="carousel_con">
+			<ul class="carousel_con">
 	   
 				{@each data.bigpiclist as item}
-					<div class="pic">
+					<li class="pic">
 					    <img src=${item.pic_link}>
-				    </div>
+				    </li>
 	            {@/each}
 
-	        </div>
+	        </ul>
+			*/
+		},
+
+		carouselTpl_1:function(){
+
+			/*
+			<ul class="carousel_con">
+	   
+                    <li class="pic">
+	                    <img src="/img/page/ca_1.png">
+                    </li>	   
+					<li class="pic">
+					    <img src="/img/page/ca_2.png">
+				    </li>
+				    <li class="pic">
+					    <img src="/img/page/ca_1.png">
+                    </li>
+	        </ul>
 			*/
 		},
         
         /*文章链接区*/
 		display:function(){
 			
-       
+			console.log($(".display >ul").html());
+			
+
 		},
 
 		/*新闻查看*/
@@ -123,18 +159,18 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 			<ul>
 			{@each data.paperlist as item_1}
 				<li>
-					<a href="#">
-						<div class="div">
-							<div class="img">
-								<img src="${item_1.pic_link}">
-							</div>
-							<div class="topic">
-							    <span class="id" style="display:none">${item_1.id}</span>
-								<p>${item_1.title}</p>
-								<p class="author">by ${item_1.author}</p>
-							</div>
+				
+					<div class="div">
+						<div class="img">
+							<img src="${item_1.pic_link}">
 						</div>
-					</a>
+						<div class="topic">
+						    <span id="id" style="display:none">${item_1.id}</span>
+							<p class="paper_title">${item_1.title}</p>
+							<p class="author">by ${item_1.author}</p>
+						</div>
+					</div>
+					
                 </li>
             {@/each}
 			</ul>
