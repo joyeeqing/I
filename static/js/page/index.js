@@ -7,18 +7,19 @@ require.config({
 	baseUrl: MIS.STATIC_ROOT
 });
 require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, request,funcTpl) {
-	var paperId;
+	var paperListId,newsId;
 	var index = {
 		
 		init:function(){
 			  
 	        //index.getCarousel();
 	        $(".carousel").append(funcTpl(index.carouselTpl_1));
+	        //$(".display > ul").append(funcTpl(index.disTpl));
 	        index.carousel();
 	        index.getPaperData();
 	        index.getNewsData();
-	        index.news_look();
-            index.display();
+	        
+            // index.display(); // async
 		},
         
         /*无缝图片滚动*/
@@ -84,14 +85,11 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
                 _api.loadbigpic,
                 {},
                 function(res){
-                	console.log(res);
-                	
                 	$(".carousel").html(juicer(funcTpl(index.carouselTpl),res));
                 }
             );
         },
            
-
 		carouselTpl:function(){
 
 			/*
@@ -125,56 +123,49 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 			*/
 		},
         
-        /*文章链接区*/
-		display:function(){
-			
-			console.log($(".display >ul").html());
-			
-
-		},
-
 		/*新闻查看*/
 		news_look:function(){
 			var lookMore=$(".lookMore"),
 			    lookOrigin=$(".more").find("a");
 
 			lookMore.hover(function(){
-	            
 	            lookMore.css("color","#288285");
 			},function(){
                 lookMore.css("color","#222");
 			});
 
+			lookMore.click(function(){
+				location.assign("news.html");
+			});
+
 			lookOrigin.hover(function(){
-                 $(this).css("color","#a4c3c4");
+                 $(this).css("color","red");
 
 			},function(){
                  $(this).css("color","#222");
 			});
+            // console.log("!!!");
 		},
 
 		disTpl:function(){
 			
 			/*
-			<ul>
-			{@each data.paperlist as item_1}
+			
+			{@each data.paperlist as item}
 				<li>
-				
 					<div class="div">
 						<div class="img">
-							<img src="${item_1.pic_link}">
+							<img src="${item.pic_link}">
 						</div>
 						<div class="topic">
-						    <span id="id" style="display:none">${item_1.id}</span>
-							<p class="paper_title">${item_1.title}</p>
-							<p class="author">by ${item_1.author}</p>
+						    <span class="paperListId" style="display:none">${item.id}</span>
+							<p class="paper_title">${item.title}</p>
+							<p class="author">by ${item.author}</p>
 						</div>
 					</div>
-					
                 </li>
             {@/each}
-			</ul>
-		
+
 			*/
 		},
         
@@ -185,35 +176,47 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
                 	"identify":"index"
                 },
                 function(res){
-                	console.log(res);
-                	$(".display").html(juicer(funcTpl(index.disTpl),res));
+                	var tmp=juicer(funcTpl(index.disTpl),res);//数据
+                	$(".display > ul").append(tmp);   //dom节点是加载在html中的
+                	index.display();
+                	index.paperTurn();
                 }
             );
+        },
+        
+        requestPaperId:function(){
+	        localStorage.setItem("paperId",paperListId);
+	        location.assign("essay_list.html");
+        },
+
+        /*点击论文跳转阅读原文*/
+        paperTurn:function(){
+        	$(".papers").on("click","li",function(){
+        		paperListId=$(this).find("paperListId").html();
+        		index.requestPaperId();
+        	});
         },
 
 		newTpl:function(){
            /*
-             <p class="title">
-	             <span><img src="/img/page/lasted-new.png">最新新闻</span>
-	             <span class="lookMore">查看更多>>>></span>
-             </p>
-
+             
              <div class="news_list">
-                {@each data.newslist as item_2}
+                {@each data.newslist as item}
 	             <div class="news_item">
+	                 <p class="news_id">${item.id}</p>
 		             <div class="img">
-			             <img src=${item_2.pic_link}>
+			             <img src=${item.pic_link}>
 		             </div>
 		             <div class="detail">
 			             <p class="news_head">
-				             <span class="title">${item_2.title}</span>
-				             <span class="date">${item_2.date}  发布</span>
+				             <span class="title">${item.title}</span>
+				             <span class="date">${item.date}  发布</span>
 			             </p>
 			             <p class="news_detail">
-				             ${item_2.summary}
+				             ${item.summary}
 			             </p>
 			             <p class="more">
-				             <a href="news_Detail.html">阅读原文</a>
+				             <a href="#">阅读原文</a>
 			             </p>
 		             </div>
 	             </div>
@@ -222,6 +225,19 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
            */
 		},
 
+		requestNewsId:function(){
+			localStorage.setItem("newsId",newsId);
+			location.assign("news_Detail.html");
+		},
+
+		/*点击新闻阅读原文*/
+        newsTurn:function(){
+        	$(".news_list").on("click",".news_item",function(){
+        		newsId=$(this).find(".item_id").html();
+        		index.requestNewsId();
+        	});
+        },
+
 		getNewsData:function(){
 			request.post(
                 _api.listnews,
@@ -229,8 +245,10 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
                 	"identify":"index"
                 },
                 function(res){
-	                console.log(res);
-	                $(".news").html(juicer(funcTpl(index.newTpl),res));
+	                var tmp=juicer(funcTpl(index.newTpl),res);
+	                $(".news > .c").append(tmp);
+	                index.news_look();
+	                
                 }
 			);
 		}
