@@ -66,8 +66,8 @@ body, ul, span, .main, .main .content {
           margin-left: 330px; }
       .main .content .news_title p:last-child {
         width: 1042px;
-        height: 30px;
-        line-height: 30px;
+        height: 40px;
+        line-height: 40px;
         text-align: center;
         color: #555;
         font-size: 14px; }

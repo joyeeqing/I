@@ -31,7 +31,7 @@
 					'<script src="'+temp+'/js/lib/jquery.js"></script>'+
 					'<script src="'+temp+'/js/modules/api.js"></script>'+
 					'<script src="'+temp+'/js/lib/juicer.js"></script>'+
-
+                    
 				'</head>'+
 				'<body>';
 				

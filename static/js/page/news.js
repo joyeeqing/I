@@ -16,24 +16,28 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
            
     	},
 
+        /*阅读原文鼠标事件*/
         mouseEvent:function(){
         	$(".news_item .detail .more span").hover(function(){
-	            $(this).css("color","#68a0a2")
+	            $(this).css({"color":"#68a0a2",
+                             "text-decoration":"underline"})
         	},function(){
-	            $(this).css("color","#222");
+	            $(this).css({"color":"#222",
+                             "text-decoration":"none"});
         	});
         },
-  	
+  	 
+
     	setStorage:function(id){
-            localStorage.setItem("newsId",newsId);
-            location.assign(news_Detail.html);
+            localStorage.setItem("newsId",id);
+            location.assign("news_Detail.html");
         },
         
         /*点击新闻阅读原文*/
         newsTurn:function(){
             $(".news_list").on('click','.news_item',function(){
-                newsId=$(this).find(".news_id");
-                news.setStorage();
+                newsId=$(this).find(".news_id").html();
+                news.setStorage(newsId);
             });
         },
 
@@ -49,37 +53,11 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                 	console.log(res);
                 	$(".news").html(juicer(funcTpl(news.newsTpl),res));
                     news.mouseEvent();
-                    news.setStorage();
+                    news.newsTurn();
                 }
     		);
     	},
 
-        newsTpl:function(){
-            /*
-             <div class="news_list">
-             {@each data.newslist as item}
-                 <div class="news_item">
-                     <p class="news_id">${item.id}</p>
-                     <div class="img">
-                         <img src=${item.pic_link}>
-                     </div>
-                     <div class="detail">
-                         <p class="news_head">
-                             <span class="title">${item.title}</span>
-                             <span class="date">${item.date}  发布</span>
-                         </p>
-                         <p class="news_detail">
-                             ${item.content}
-                         </p>
-                         <p class="more">
-                             <span>阅读原文</span>
-                         </p>
-                     </div>
-                 </div>
-              {@/each}
-             </div>
-            */
-        },
         
         /*加载更多新闻*/
     	loadMore:function(){
@@ -94,14 +72,41 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 	                	"page_size":6
 	                },
 	                function(res){
-	                	var prev_tpl=$(".news").html();
-	                	$(".news").html(prev_tpl+juicer(funcTpl(news.newsTpl),res));
-                        news.mouseEvent();
-                        news.setStorage();
+	                	
+	                	$(".news").append(juicer(funcTpl(news.newsTpl),res)).show('normal');
+                        news.mouseEvent(); 
 	                }
     			);
     		});
-    	}
+    	},
+
+        newsTpl:function(){
+            /*
+             <div class="news_list">
+             {@each data.newslist as item}
+                 <div class="news_item">
+                     <p class="news_id" style="display:none">${item.id}</p>
+                     <div class="img">
+                         <img src=${item.picture.link}>
+                     </div>
+                     <div class="detail">
+                         <p class="news_head">
+                             <span class="title">${item.title}</span>
+                             <span class="date">${item.date}  发布</span>
+                         </p>
+                         <p class="news_detail">
+                             
+                         </p>
+                         <p class="more">
+                             <span>阅读原文</span>
+                         </p>
+                     </div>
+                 </div>
+              {@/each}
+             </div>
+            */
+        }
+        
     };
 
     return news.init();

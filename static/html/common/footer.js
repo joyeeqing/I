@@ -104,13 +104,13 @@
              
         });
 
-    
+    /*相关单位*/
     var tpl=function(){
         /*
             {@each data as item}
                 <li>
                     <a href="#">
-                        <img src=${item.pic_link}>
+                        <img src=${item.picture.link}>
                         <span class="about_name">${item.name}</span>
                     </a>
                 </li>
@@ -119,7 +119,8 @@
     };
 
     var tplToString=tpl.toString().replace(/^[^\/]+\/\*!?/, '').replace(/\*\/[^\/]+$/, '');
-
+    
+    /*获取相关页面数据*/
     $.get(
             _api.listdepartment,
             function(res){
@@ -143,7 +144,14 @@
         }
     });
 
+    /*
+        搜素框
+    */
+    $(".icon_search").on('click',function(){
 
+        var searchValue=$(".header_search").val();
+        
+    });
 
 
 })();

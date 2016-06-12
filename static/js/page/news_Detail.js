@@ -6,20 +6,31 @@ require.config({
 	baseUrl:MIS.STATIC_ROOT
 });
 require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, request,funcTpl) {
-    var id;
+    var newsId;
 	var new_Detail={
 
 		init:function(){
 
 	        //new_Detail.getStorgeId();
-	        $(".content").append(funcTpl(new_Detail.detailTpl));
-	        $(".footer").append(funcTpl(new_Detail.footerTpl));
+	        new_Detail.getDetailId();
+	        new_Detail.getOneNews();
 		},
 
-		getStorgeId:function(){
+		getDetailId:function(){
+              newsId=localStorage.getItem("newsId");
+              console.log(newsId);
+		},
 
-			id=localStorage.getItem(newId);
-
+		getOneNews:function(){
+	        request.post(
+                _api.readnews,
+                {
+                	"id":newsId
+                },
+                function(res){
+                	$(".content").html(juicer(funcTpl(new_Detail.detailTpl),res));
+                }
+	        );
 		},
 
 		detailTpl:function(){
@@ -30,16 +41,17 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 	                <div class="news_title">
 		                <p>
 	                        <span>新闻标题 :</span>
-	                        <span>乔布斯访问杭州</span>
+	                        <span>${data.news.title}</span>
 		                </p>
 		                <p>
-			                <span>发布日期：</span>
-                            <span>作者：</span>
+			                <span>发布日期：${data.news.date}</span>
+                            <span>作者：${data.news.publisher}</span>
 			            </p>
 	                </div>
 
 	                <div class="news_content">
 		                <p>
+			                ${data.news.content}
 		                </p>
 	                </div>
 

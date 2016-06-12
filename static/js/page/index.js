@@ -123,29 +123,6 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 			*/
 		},
         
-		/*新闻查看*/
-		news_look:function(){
-			var lookMore=$(".lookMore"),
-			    lookOrigin=$(".more").find("a");
-
-			lookMore.hover(function(){
-	            lookMore.css("color","#288285");
-			},function(){
-                lookMore.css("color","#222");
-			});
-
-			lookMore.click(function(){
-				location.assign("news.html");
-			});
-
-			lookOrigin.hover(function(){
-                 $(this).css("color","red");
-
-			},function(){
-                 $(this).css("color","#222");
-			});
-            // console.log("!!!");
-		},
 
 		disTpl:function(){
 			
@@ -155,7 +132,7 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 				<li>
 					<div class="div">
 						<div class="img">
-							<img src="${item.pic_link}">
+							<img src="${item.picture.link}">
 						</div>
 						<div class="topic">
 						    <span class="paperListId" style="display:none">${item.id}</span>
@@ -168,21 +145,16 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 
 			*/
 		},
-        
-        getPaperData:function(){
-             request.post(
-                _api.listpaper,
-                {
-                	"identify":"index"
-                },
-                function(res){
-                	var tmp=juicer(funcTpl(index.disTpl),res);//数据
-                	$(".display > ul").append(tmp);   //dom节点是加载在html中的
-                	index.display();
-                	index.paperTurn();
-                }
-            );
-        },
+
+		papers_look:function(){
+			$(".topic").hover(function(){
+	            $(this).css({"color":"#288285",
+                 	          "text-decoration":"underline"});
+			},function(){
+                $(this).css({"color":"#222",
+                             "text-decoration":"none"});
+			});
+		},
         
         requestPaperId:function(){
 	        localStorage.setItem("paperId",paperListId);
@@ -197,15 +169,30 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
         	});
         },
 
+        getPaperData:function(){
+             request.post(
+                _api.listpaper,
+                {
+                	"identify":"index"
+                },
+                function(res){
+                	var tmp=juicer(funcTpl(index.disTpl),res);//数据
+                	$(".display > ul").append(tmp);   //dom节点是加载在html中的
+                	index.papers_look();
+                	index.paperTurn();
+                }
+            );
+        },
+
 		newTpl:function(){
            /*
              
              <div class="news_list">
                 {@each data.newslist as item}
 	             <div class="news_item">
-	                 <p class="news_id">${item.id}</p>
+	                 <p class="news_id" style="display:none">${item.id}</p>
 		             <div class="img">
-			             <img src=${item.pic_link}>
+			             <img src=${item.picture.link}>
 		             </div>
 		             <div class="detail">
 			             <p class="news_head">
@@ -225,6 +212,33 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
            */
 		},
 
+		/*新闻查看*/
+		news_look:function(){
+			var lookMore=$(".lookMore"),
+			    lookOrigin=$(".more").find("a");
+
+			lookMore.hover(function(){
+	            lookMore.css({"color":"#288285",
+                 	          "text-decoration":"underline"});
+			},function(){
+                lookMore.css({"color":"#222",
+                 	          "text-decoration":"none"});
+			});
+
+			lookMore.click(function(){
+				location.assign("news.html");
+			});
+
+			lookOrigin.hover(function(){
+                 $(this).css({"color":"#288285",
+                 	          "text-decoration":"underline"});
+
+			},function(){
+                 $(this).css({"color":"#222",
+                 	          "text-decoration":"none"});
+			});
+		},
+
 		requestNewsId:function(){
 			localStorage.setItem("newsId",newsId);
 			location.assign("news_Detail.html");
@@ -233,7 +247,8 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 		/*点击新闻阅读原文*/
         newsTurn:function(){
         	$(".news_list").on("click",".news_item",function(){
-        		newsId=$(this).find(".item_id").html();
+        		newsId=$(this).find(".news_id").html();
+        		console.log(newsId);
         		index.requestNewsId();
         	});
         },
@@ -245,15 +260,14 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
                 	"identify":"index"
                 },
                 function(res){
-	                var tmp=juicer(funcTpl(index.newTpl),res);
-	                $(".news > .c").append(tmp);
+	               
+	                $(".news > .c").append(juicer(funcTpl(index.newTpl),res));
 	                index.news_look();
-	                
+	                index.newsTurn();
                 }
 			);
 		}
-
 	};
 
-	index.init();
+	return index.init();
 });
