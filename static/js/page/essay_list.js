@@ -38,7 +38,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 			
 		$.ajax({
             	type:'post',
-            	url:'http://rap.taobao.org/mockjs/4112/institute/paper/listpaper.do',
+            	url:_api.listpaper,
             	data:{page_id:1,identify:'paper',page_size:1},
             	success:function(res){
             		var tpl=juicer($('#content').html(),res);

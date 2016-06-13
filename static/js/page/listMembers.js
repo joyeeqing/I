@@ -85,7 +85,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 				});*/
 				$.ajax({
             	type:'post',
-            	url:_api.listLeaders,
+            	url:_api.listMembers,
             	data:{page_id:1,page_size:6},
             	success:function(res){
             		

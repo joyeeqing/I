@@ -33,7 +33,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 			
 		$.ajax({
             	type:'post',
-            	url:'http://rap.taobao.org/mockjs/4112/institute/paper/readpaper.do',
+            	url:_api.readpaper,
             	data:{id:1},
             	success:function(res){
             		$(".content").append(funcTpl(dissertation.textTpl));

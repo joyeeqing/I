@@ -22,11 +22,11 @@ var _api={
     /*成员、已毕业、学术带头*/
 
     //学术带头人
-    listLeaders:'http://rap.taobao.org/mockjs/4112/institute/person/listLeader',
+    listLeaders:'http://rap.taobao.org/mockjs/4112/institute/person/listperson.do',
     //已毕业成员
-    listGrads:'http://rap.taobao.org/mockjs/4112/institute/person/listLeader',
+    listGrads:'http://rap.taobao.org/mockjs/4112/institute/person/listperson.do',
     //成员介绍
-    listMembers:'http://rap.taobao.org/mockjs/4112/institute/person/listLeader',
+    listMembers:'http://rap.taobao.org/mockjs/4112/institute/person/listperson.do',
 
     /*研究成果*/
 
