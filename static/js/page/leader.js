@@ -14,11 +14,8 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		init:function(){
              leader.getData();
              $("#content").append(funcTpl(leader.headerTpl));
-             
-             
              leader.show_info();
              
-
 		},
 
 		headerTpl:function(){
