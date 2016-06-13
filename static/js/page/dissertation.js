@@ -10,6 +10,10 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 
 	init:function(){
 		dissertation.getData();
+		$('#btn1').click(function(event) {
+			$('#content_text').css('margin-top','-690px');
+			return false;
+		});
 		
 	},
 	

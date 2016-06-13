@@ -1,7 +1,3 @@
-/**
- * 
- * @author gaoxiang
- */
 require.config({
 	baseUrl: MIS.STATIC_ROOT
 });
@@ -12,12 +8,12 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 	var leader={
 
 		init:function(){
-             leader.getData();
+             leader.getData(1);
              $("#content").append(funcTpl(leader.headerTpl));
              
              
              leader.show_info();
-             
+             leader.tag();
 
 		},
 
@@ -40,6 +36,38 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		    	</li>
 		    {@/each}
 		     */
+		},
+
+		tag:function(){
+			var i=parseInt($('#tag_nub').val());
+			$('#btn2').on('click',function(event){
+				if(i<js.data.pageSum-18){
+					i=i+1;
+					leader.getData(i);
+					$("#content").html('<div class="detial_info"></div>'+funcTpl(leader.headerTpl));
+					$('#tag_nub').val(i);
+					leader.show_info();
+					if(i==js.data.pageSum){
+						$('#btn2').css('color','black');
+						return false;
+					};
+					return false;
+				}
+			});
+			$('#btn1').on('click',function(event){
+				if(i>1){
+					i=i-1;
+					leader.getData(i);
+					$("#content").html('<div class="detial_info"></div>'+funcTpl(leader.headerTpl));
+					$('#tag_nub').val(i);
+					leader.show_info();
+					if(i==1){
+						$('#btn1').css('color','black');
+						return false;
+					};
+					return false;
+				}
+			});
 		},
 
 		show_info:function (){
@@ -74,7 +102,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 			});
 		},
 
-		getData:function(){
+		getData:function(i){
 			/*request.post({
 				url:'http://rap.taobao.org/mockjs/4112/institute/person/listperson.do',
 				data:{page_id:1,page_size:6},
@@ -86,9 +114,9 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 				$.ajax({
             	type:'post',
             	url:_api.listGrads,
-            	data:{page_id:1,page_size:6},
+            	data:{page_id:i,page_size:6},
             	success:function(res){
-            		
+            		js=res;
             		var tpl=juicer($('#content').html(),res);
             		$('#content').html(tpl);
             		//console.log(res.data.personlist[0]);
