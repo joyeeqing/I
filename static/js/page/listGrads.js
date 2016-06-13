@@ -7,18 +7,12 @@ require.config({
 });
 require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, request, funcTpl) {
 
-
-
 	var leader={
 
 		init:function(){
              leader.getData();
-             $("#content").append(funcTpl(leader.headerTpl));
+             //$("#content").append(funcTpl(leader.headerTpl));
              
-             
-             leader.show_info();
-             
-
 		},
 
 		headerTpl:function(){
@@ -75,31 +69,22 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		},
 
 		getData:function(){
-			/*request.post({
-				url:'http://rap.taobao.org/mockjs/4112/institute/person/listperson.do',
-				data:{page_id:1,page_size:6},
-				function(res){
-						var tpl=juicer($(".pic").html(),res);
-						$(".pic").html(tpl);
-					},
-				});*/
+
 				$.ajax({
             	type:'post',
             	url:_api.listGrads,
             	data:{page_id:1,page_size:6},
             	success:function(res){
-            		
-            		var tpl=juicer($('#content').html(),res);
-            		$('#content').html(tpl);
-            		//console.log(res.data.personlist[0]);
-            		//$("#content").innerHTML=tpl;
+
+            		$('#content').append(juicer(funcTpl(leader.headerTpl),res));
+            		leader.show_info();
             	},
             	error:function(res){
             		console.log(res);
 
             	}
             });
-		},
+		}
 	};
-	leader.init();
+	return leader.init();
 });
