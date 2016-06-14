@@ -27,32 +27,25 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
     	<div class="content">
 			<div id="text_time">发表日期：</div>
 			<div id="text_author">作者：</div>
-			<div id="content_text"></div>
+			<p id="content_text"></p>
 		</div>
 		</div>
     	*/
 	},
 
 	getData:function(){
-			
-		$.ajax({
-            	type:'post',
-            	url:_api.readpaper,
-            	data:{id:1},
-            	success:function(res){
-            		$(".content").append(funcTpl(dissertation.textTpl));
+		request.post(
+                _api.readpaper,
+                {id:1},
+                function(res){
+                    $(".content").append(funcTpl(dissertation.textTpl));
             		var value=res.data.paper;
             		$('#title_text').append(value.title);
             		$('#text_time').append(value.date);
             		$('#text_author').append(value.author);
             		$('#content_text').append(value.content);
-
-            	},
-            	error:function(res){
-            		console.log(res);
-
-            	}
-            });
+                    }
+                );	
 		},
 
 	};

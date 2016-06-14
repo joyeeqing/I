@@ -16,11 +16,11 @@
                 <img src="/img/common/logo.png" class="icon_logo">
                 <ul class="footer_list">
                     <li><a href="leader.html"><img src="/img/common/leader.png">学术带头人</a></li>
-                    <li><a href=""><img src="/img/common/member.png">团队成员</a></li>
+                    <li><a href="listMembers.html"><img src="/img/common/member.png">团队成员</a></li>
                     <li><a href="news.html"><img src="/img/common/new.png">新闻动态</a></li>
                 </ul>
                 <ul class="footer_list">
-                    <li><a href=""><img src="/img/common/gradu.png">已毕业成员</a></li>
+                    <li><a href="listGrads.html"><img src="/img/common/gradu.png">已毕业成员</a></li>
                     <li><a href="project.html"><img src="/img/common/disco.png">研究成果</a></li>
                     <li><a href="essay_list.html"><img src="/img/common/paper.png">论文专著</a></li>
                 </ul>

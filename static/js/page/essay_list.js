@@ -12,7 +12,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 
 	init:function(){
 		
-		$("#content").append(funcTpl(essay_list.listTpl));
+		//$("#content").append(funcTpl(essay_list.listTpl));
 		essay_list.getData();
 		essay_list.load();
 	},
@@ -24,27 +24,29 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
     		<span class="index">${parseInt(index)+1}</span> 
     		<span class="author">${it.author}</span> 
     		<span class="name">
-    		<a href="#" id="h1">${it.title}</a><br/>
+    		<a href="dissertation.html" id="h1">${it.title}</a><br/>
     		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${it.content}。。。<br/>
-    		<a href="#" id="h2">【关键词】${it.keyword}</a>
+    		<p id="h2">【关键词】${it.keyword}</p>
     		</span>
-    		<a href="#" class="time">${it.date}</a>
+    		<p class="time">${it.date}</p>
     	</li>
     	{@/each}
     	*/
 	},
 
 	getData:function(){
-			
-		$.ajax({
-            	type:'post',
-            	url:_api.listpaper,
-            	data:{page_id:1,identify:'paper',page_size:1},
-            	success:function(res){
-            		var tpl=juicer($('#content').html(),res);
-            		$('#content').html(tpl);
-            	},
-            });
+		request.post(
+                _api.listpaper,
+                {
+                    page_id:1,
+                    identify:'paper',
+                    page_size:1
+                },
+                function(res){
+                    var tpl=juicer(funcTpl(essay_list.listTpl),res);
+                    $('#content').html(tpl);
+                    }
+                );
 	},
 
 	load:function(){
