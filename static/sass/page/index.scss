@@ -11,7 +11,7 @@ body{
 	@extend %px;
     background-color:#ddece7;
 }
-p,span,ul,li{
+p,span,ul,li,img{
 	@extend %px;
 }
 
@@ -25,23 +25,21 @@ p,span,ul,li{
 	width:100%;
 	height:500px;
 	position:relative;
-	overflow:hidden;
 	ul{
-		
+        width:300%;
 		height:490px;
-		overflow:hidden;
+
 		li{
-			width:1366px;
-			height:490px;
+            overflow:hidden;
+		    height:490px;
 		    float:left;
 			img{
 				display:block;
-				width:1366px;
-				height:490px;
+                width:100%;
+                height:490px;
 		    }
 	    }
-	}
-	
+	}	
 }
 
 .circles{
@@ -89,7 +87,7 @@ p,span,ul,li{
 	@extend %px;
 	margin-top:30px;
 	margin-bottom:95px;
-	width:1340px;
+	width:100%;
 	height:240px;
 	cursor:default;
 	ul{
@@ -98,16 +96,18 @@ p,span,ul,li{
 		height:240px;
 		li{
 			float:left;
-			width:280px;
+			width:20%;
 			height:240px;
-			margin-left:48px;
-			
+			margin-left:4%;
 			.div{
-				width:280px;
-				height:240px;
+				width:100%;
+				height:100%;
 				background-color:#f7f5f5;
 				box-shadow:10px 10px 10px #c0c4c2;
 				img{
+				    display:block;
+				    width:100%;
+                    height:55%;
 					padding:11px 11px 0 11px;
 				}
                 p{
@@ -132,82 +132,84 @@ p,span,ul,li{
 	width:100%;
 	height:auto;
     p[class="title"]{
-	    margin-left:147px;
+	    margin:0 auto;
 	    background-color:#fdf8f8;
-	    width:1040px;
+	    width:76%;
 	    height:53px;
 	    line-height:53px;
-
 	    span{
 	        width:150px;
 	        height:40px;
 		    font-size:24px;
-
 		    &:first-child{
 			    float:left;
 			    margin-left:15px;
 			    cursor:default;
 		    }
 	        &:last-child{
-		        margin-left:700px;
+		        margin-left:60%;
 		        cursor:default;
 	        }
         }
     }
-	.news_list{
-		width:100%;
+    .c{
+	    width:100%;
 		height:auto;
 		padding-bottom:40px;
 		background-color:#ffffff;
-		.news_item{
-	        width:100%;
-			height:170px;
-			.img{
-				float:left;
-                margin:33px 0 0 147px;
-			}
-			.detail{
-			    @extend %px;
-			    margin-left:357px;
-			    padding:33px 0 0 0;
-			    width:830px;
-			    height:106px;
-			    cursor:default;
-				.news_head{
-
-				    width:830px;
-				    height:30px;
-				    line-height:30px;
-					span[class="title"]{
-					    width:300px;
+	    .news_list{
+			width:76%;
+			height:auto;
+			margin:0 auto;
+			.news_item{
+		        width:100%;
+				height:170px;
+				.img{
+					float:left;
+	                margin:33px 0 0 0;
+				}
+				.detail{
+				    @extend %px;
+				    padding:33px 0 0 200px;
+				    width:100%;
+				    height:106px;
+				    cursor:default;
+					.news_head{
+					    width:100%;
 					    height:30px;
-					    margin-top:0px;
-                        float:left;
-						font-size:22px;
-					    color:#222;
+					    line-height:30px;
+						span[class="title"]{
+						    width:300px;
+						    height:30px;
+						    margin-top:0px;
+	                        float:left;
+							font-size:22px;
+						    color:#222;
+						}
+						span[class="date"]{
+						    margin-left:40%;
+							font-size:16px;
+							color:#a4c3c4;						
+						}
 					}
-					span[class="date"]{
-					    margin-left:380px;
-						font-size:16px;
-						color:#a4c3c4;						
+					.news_detail{
+							color:#666;
+							font-size:14px;
+							margin:15px 0 5px 0;
 					}
+	                .more{
+		                a{
+			                display:block;
+			                width:200px;
+			                height:50px;
+			                font-size:18px;
+			                color:#222;
+			                margin-left:88%;
+		                }           
+	                }
 				}
-				.news_detail{
-						color:#666;
-						font-size:14px;
-						margin:15px 0 5px 0;
-				}
-                .more{
-	                a{
-		                display:block;
-		                width:200px;
-		                height:50px;
-		                font-size:18px;
-		                color:#222;
-		                margin-left:700px;
-	                }           
-                }
 			}
 		}
-	}
+    }
+	
 }

@@ -12,9 +12,8 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 		
 		init:function(){
 			  
-	        //index.getCarousel();
 	        $(".carousel").append(funcTpl(index.carouselTpl_1));
-	        //$(".display > ul").append(funcTpl(index.disTpl));
+	        
 	        index.carousel();
 	        index.getPaperData();
 	        index.getNewsData();
@@ -26,13 +25,16 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 		carousel:function(){
 
            var ulTag=$(".carousel > ul"),
+               li=ulTag.find('li'),
                liNum=ulTag.find("li").length,
                i=0,
                timer,
-               Imgs=$(".carousel > ul").find("li");
+               Imgs=$(".carousel > ul").find("li"),
                dis=$(".disc").find("li");
 
-           
+           var left_dis=(ulTag.width())/3;
+           li.width(left_dis);
+           var d=-left_dis;
            function handler(){
                i++;
                if(i > liNum - 1){
@@ -42,7 +44,7 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
                if(i == 0){
 	                	ulTag.css({"margin-left":"0px"});
 	                }else{
-	                	ulTag.animate({"margin-left":-1366*i+"px"},500); 
+	                	ulTag.animate({"margin-left":d*i+"px"},500); 
 	                }
 
 	           	dis.eq(i).addClass("selected")
@@ -50,7 +52,7 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 
 
            }     
-           ulTag.width(1366*3);
+           
               
            timer=setInterval(handler,2000);
 
@@ -64,7 +66,7 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
                     i=_this.attr("index");
 	                _this.addClass('selected')
 	                     .siblings().removeClass('selected');
-                    ulTag.animate({"margin-left":i*-1366+'px'});
+                    ulTag.animate({"margin-left":i*d+'px'});
                 });
            }).on('mouseout',function(){
 
