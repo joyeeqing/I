@@ -12,10 +12,10 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 	var leader={
 
 		init:function(){
-             leader.getData();
-             $("#content").append(funcTpl(leader.headerTpl));
+             leader.getData(1);
+             //$("#content").append(funcTpl(leader.headerTpl));
              leader.show_info();
-             
+             leader.tag();
 		},
 
 		headerTpl:function(){
@@ -27,7 +27,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		    			<span class="black"></span>
 		    			<span class="name">姓名：${it.name}<br/></span>
 		    			<span class="info">
-		    				方向：${it.major}${index}<br/>
+		    				方向：${it.major}<br/>
 		    				专业：${it.majorin}<br/>
 		    			</span>
 		    			<span class="profile">
@@ -37,6 +37,38 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		    	</li>
 		    {@/each}
 		     */
+		},
+
+		tag:function(){
+			var i=parseInt($('#tag_nub').val());
+			$('#btn2').on('click',function(event){
+				if(i<js.data.pageSum){
+					i=i+1;
+					leader.getData(i);
+					$('#tag_nub').val(i);
+					leader.show_info();
+					$('#btn1').css('color','white');
+					if(i==js.data.pageSum){
+						$('#btn2').css('color','black');
+						return false;
+					};
+					return false;
+				}
+			});
+			$('#btn1').on('click',function(event){
+				if(i>1){
+					i=i-1;
+					leader.getData(i);
+					$('#tag_nub').val(i);
+					leader.show_info();
+					$('#btn2').css('color','white');
+					if(i==1){
+						$('#btn1').css('color','black');
+						return false;
+					};
+					return false;
+				}
+			});
 		},
 
 		show_info:function (){
@@ -71,31 +103,17 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 			});
 		},
 
-		getData:function(){
-			/*request.post({
-				url:'http://rap.taobao.org/mockjs/4112/institute/person/listperson.do',
-				data:{page_id:1,page_size:6},
+		getData:function(i){
+			request.post(
+				_api.listLeaders,
+				{page_id:1,page_size:6},
 				function(res){
-						var tpl=juicer($(".pic").html(),res);
-						$(".pic").html(tpl);
-					},
-				});*/
-				$.ajax({
-            	type:'post',
-            	url:_api.listLeaders,
-            	data:{page_id:1,page_size:6},
-            	success:function(res){
-            		
-            		var tpl=juicer($('#content').html(),res);
-            		$('#content').html(tpl);
-            		//console.log(res.data.personlist[0]);
-            		//$("#content").innerHTML=tpl;
-            	},
-            	error:function(res){
-            		console.log(res);
-
-            	}
-            });
+					js=res;
+            		var tpl=juicer(funcTpl(leader.headerTpl),res);
+            		$('#content').html('<div class="detial_info"></div>'+tpl);
+            		$('.headpic>span').hide();
+					}
+				);
 		},
 	};
 	leader.init();

@@ -12,7 +12,7 @@
 
 .outer {
   width: 100%;
-  margin-top: 14px;
+  margin-top: 18px;
   border-top: solid 9px #54bfbc;
   color: black; }
 
@@ -21,23 +21,22 @@
   margin: 0 auto; }
 
 .vertical_line {
-  margin-left: 43px;
+  margin-left: 63px;
   border-left: solid 8px #54bfbc;
   border-right: solid 8px #54bfbc;
   width: 82px;
   height: 36px; }
 
 .list_text {
+  margin-left: 20px;
   width: 164px;
   height: 47px;
   line-height: 47px;
   font-size: 22px;
   text-align: center;
   font-weight: 500;
-  background-color: #54bfbc;
-  color: white;
-  float: left;
-  margin-bottom: 60px; }
+  background-color: #54BEB2;
+  color: white; }
 
 .headpic {
   padding-top: 80px;
@@ -107,8 +106,8 @@
 
 .tag input {
   float: left;
-  height: 24px;
-  width: 23px;
+  height: 26px;
+  width: 25px;
   font-size: 20px;
   margin: 21px 17px 0 17px;
   padding-left: 5px;

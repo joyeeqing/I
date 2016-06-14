@@ -69,15 +69,19 @@
 
 .content {
   width: 1042px;
-  margin-top: 15px; }
+  margin-top: 15px;
+  overflow: hidden;
+  margin-bottom: 30px; }
 
 #text_time {
   margin: 0 50px 0 40%;
   float: left; }
 
 #content_text {
-  height: 870px;
-  font-size: 18px;
+  text-overflow: ellipsis;
+  height: 690px;
+  font-size: 16px;
+  line-height: 28px;
   margin-top: 40px;
   width: 100%; }
 
@@ -110,7 +114,7 @@
 .tag input {
   float: left;
   height: 24px;
-  width: 23px;
+  width: 25px;
   font-size: 20px;
   margin: 21px 17px 0 17px;
   padding-left: 5px;
