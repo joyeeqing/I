@@ -38,12 +38,14 @@
     var headerTpl = function(){
 		/*
 		<div class="common_header">
-
-		    <img src="/img/common/logo.png" class="icon_logo">
-		   
-            <div class="common_header_search">
-	            <input type="text" value="" id="header_search"/>
-	            <img src="/img/common/search.png" id="icon_search">
+            
+            <div class="header_con">
+			    <img src="/img/common/logo.png" class="icon_logo">
+			   
+	            <div class="common_header_search">
+		            <input type="text" value="" id="header_search"/>
+		            <img src="/img/common/search.png" id="icon_search">
+	            </div>
             </div>
 
             <div class="common_header_nav">

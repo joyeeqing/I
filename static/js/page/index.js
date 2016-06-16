@@ -13,7 +13,7 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 		init:function(){
 			  
 	        $(".carousel").append(funcTpl(index.carouselTpl_1));
-	        
+	        index.carouselCss();
 	        index.carousel();
 	        index.getPaperData();
 	        index.getNewsData();
@@ -22,18 +22,29 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 		},
         
         /*无缝图片滚动*/
+        carouselCss:function(){
+            var ulTag=$(".carousel > ul"),
+                li=ulTag.find('li'),
+        	    left_dis=(ulTag.width())/3;
+            li.width(left_dis);
+            console.log(ulTag.width());
+            console.log(left_dis);
+            console.log(ulTag.width()==left_dis*3);
+
+        }, 
+
 		carousel:function(){
 
            var ulTag=$(".carousel > ul"),
                li=ulTag.find('li'),
                liNum=ulTag.find("li").length,
+               left_dis=(ulTag.width())/3,
                i=0,
                timer,
                Imgs=$(".carousel > ul").find("li"),
                dis=$(".disc").find("li");
 
-           var left_dis=(ulTag.width())/3;
-           li.width(left_dis);
+           
            var d=-left_dis;
            function handler(){
                i++;
