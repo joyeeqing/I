@@ -31,7 +31,7 @@ body, ul, span, .content {
 
 .content {
   width: 1042px;
-  height: 1020px;
+  height: 1005px;
   margin: 0 auto; }
   .content .news_title {
     margin-top: 34px;
@@ -71,8 +71,9 @@ body, ul, span, .content {
       height: 100%;
       padding: 34px 0 30px 0; }
       .content .contentList .news_content p {
+        padding: 0 20px 0 20px;
         width: 100%;
-        height: 100%;
+        height: 97%;
         overflow: hidden;
         color: #1e1e1e;
         font-size: 18px; }
@@ -84,7 +85,7 @@ body, ul, span, .content {
   margin-bottom: 30px;
   background-color: #54bfbc; }
   .footer p {
-    width: 40%;
+    width: 50%;
     height: 65px;
     line-height: 65px;
     margin: 0 auto;
@@ -97,10 +98,15 @@ body, ul, span, .content {
       margin-left: 55px;
       font-size: 12px;
       color: #060606; }
-    .footer p #at {
+    .footer p .page {
       display: inline-block;
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 28px;
+      line-height: 28px;
+      margin: 0 5px 0 5px;
+      border: 0;
+      font-family: 12px;
+      padding: 1px 1px;
       background-color: #fcf7f7; }
 
 /*# sourceMappingURL=../maps/page/news_Detail.css.map */

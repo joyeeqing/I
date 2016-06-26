@@ -106,7 +106,7 @@
     position: absolute;
     top: 0;
     left: 55%;
-    width: 570px;
+    width: 45%;
     height: 38px;
     font-size: 16px; }
     .common_header_nav .header_nav_list a li {
@@ -158,7 +158,8 @@
   .common_footer_list .footer_list {
     padding-top: 50px;
     margin-left: 45%;
-    width: 700px;
+    margin-right: 0;
+    width: 50%;
     height: 50px; }
     .common_footer_list .footer_list li {
       float: left;
