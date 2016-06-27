@@ -42,8 +42,8 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                     content=res.data.news.content;
                     start=0;
                     page=1;
-                    count=1772;
-                    temp=1772; 
+                    count=1716;
+                    temp=1716; 
                     startPage=1;
                     end=content.toString().length;
                     totalPages=Math.ceil(end/count);
@@ -88,55 +88,60 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 			var newsPages=$(".news_content");
 			
 			newsPages.eq(page-1).show().siblings().hide();
+			/*var $content=$(".content");
+			console.log($content);
+			content=$content.get(0);
+			console.log(typeof content);
+			content.scollIntoView(true);*/
 			$(".footer > p").find(".page").val(page);
 		},
 
 		turnPage:function(){
 
-			$("#font").click(function(){
+			$("#font>a").click(function(){
                 				
 				new_Detail.newsPage(new_Detail.lastPage());
 			});
 
-			$("#behind").click(function(){
+			$("#behind>a").click(function(){
 				
 				new_Detail.newsPage(new_Detail.nextPage());
 			});
 		},
 
 		nextPage:function(){
-            $("#behind").css({"color":"#060606"});
+            $("#behind>a").css({"color":"#060606"});
 	        /* 判断是否到最后一页 */
 			if(page == totalPages&&page == startPage) {
                  
-				$("#behind").css({"color":"#e3e3e3","cursor":"not-allowed"});
-				$("#font").css({"color":"#e3e3e3","cursor":"not-allowed"});				
+				$("#behind>a").css({"color":"#e3e3e3","cursor":"not-allowed"});
+				$("#font>a").css({"color":"#e3e3e3","cursor":"not-allowed"});				
 				return totalPages;
 
 			} else if(page == totalPages && page !== startPage){
-                $("#behind").css({"color":"#e3e3e3","cursor":"not-allowed"});
+                $("#behind>a").css({"color":"#e3e3e3","cursor":"not-allowed"});
                 return totalPages;
 			}else {
-				$("#font").css({"color":"#060606","cursor":"default"});
+				$("#font>a").css({"color":"#060606","cursor":"default"});
 				return ++ page;
 			}
 		},
 
 		lastPage:function(){
-	       $("#font").css({"color":"#060606"});
+	       $("#font>a").css({"color":"#060606"});
 
 	        /* 判断是否到初始页 */
 			if(page == startPage && page == totalPages) {
-                $("#behind").css({"color":"#e3e3e3","cursor":"not-allowed"});
-				$("#font").css({"color":"#e3e3e3","cursor":"not-allowed"});	
+                $("#behind>a").css({"color":"#e3e3e3","cursor":"not-allowed"});
+				$("#font>a").css({"color":"#e3e3e3","cursor":"not-allowed"});	
 				return startPage;
 
 			} else if(page == startPage && page !== totalPages){
-               $("#font").css({"color":"#e3e3e3","cursor":"not-allowed"});	
+               $("#font>a").css({"color":"#e3e3e3","cursor":"not-allowed"});	
                return startPage;
 
 			}else {
-				$("#behind").css({"color":"#060606","cursor":"default"});
+				$("#behind>a").css({"color":"#060606","cursor":"default"});
 				return -- page;
 			}
             		
@@ -177,32 +182,34 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		turnCss:function(){
 
 			/*跳转页面样式*/
-	        $("#font").hover(function(){
+	        $("#font>a").hover(function(e){
 	        	if(page == startPage){
 
 	        	}else{
 	        		$(this).css({"color":"#fff"});
 	        	}
 	            
-	        },function(){
+	        },function(e){
 	        	if(page==startPage){
-
+                    e.preventDefault();
 	        	}else{
 	        		$(this).css({"color":"#060606"});
 	        	}
 	            
 	        });
 
-	        $("#behind").hover(function(){
-	        	if(page == totalPages){
-
+	        $("#behind>a").hover(function(e){
+	        	
+	        	if(page == totalPages){ 
+                    e.preventDefault();
 	        	}else{
 	        		$(this).css({"color":"#fff"});
 	        	}
 	            
-	        },function(){
+	        },function(e){
+	        	
 	        	if(page==totalPages){
-                    
+                    e.preventDefault();
 	        	}else{
 	        		$(this).css({"color":"#060606"});
 	        	}
@@ -214,9 +221,9 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		footerTpl:function(){
 			/*
 				<p>
-					<span class="text" id="font">上一页</span>
+					<span class="text" id="font"><a href="#">上一页</a></span>
 					<span class="text">第<input class="page">页</span>
-					<span class="text" id="behind">下一页</span>
+					<span class="text" id="behind"><a href="#">下一页</a></span>
 					<span class="text-1">共 ${casePage} 页</span>
 				</p>
 			*/
