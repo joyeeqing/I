@@ -3,7 +3,6 @@
 	margin:0;
 	padding:0;
 }
-
 a{
 	text-decoration:none;
 }
@@ -26,13 +25,14 @@ p,span,ul,li,img{
 	height:500px;
 	overflow:hidden;
 	position:relative;
-	ul{
+	.carousel_con{
         width:300%;
 		height:490px;
         overflow:hidden;
 		li{
             overflow:hidden;
 		    height:490px;
+
 		    float:left;
 			img{
 				display:block;
@@ -148,7 +148,7 @@ p,span,ul,li,img{
 			    cursor:default;
 		    }
 	        &:last-child{
-		        margin-left:60%;
+		        margin-left:50%;
 		        cursor:default;
 	        }
         }
@@ -188,7 +188,7 @@ p,span,ul,li,img{
 						    color:#222;
 						}
 						span[class="date"]{
-						    margin-left:40%;
+						    margin-left:20%;
 							font-size:16px;
 							color:#a4c3c4;						
 						}
@@ -211,6 +211,5 @@ p,span,ul,li,img{
 				}
 			}
 		}
-    }
-	
+    }	
 }

@@ -11,14 +11,12 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 	var index = {
 		
 		init:function(){
-			  
-	        $(".carousel").append(funcTpl(index.carouselTpl_1));
-	        index.carouselCss();
-	        index.carousel();
+			
+			index.getCarousel();
+	        
 	        index.getPaperData();
 	        index.getNewsData();
 	        
-            // index.display(); // async
 		},
         
         /*无缝图片滚动*/
@@ -26,6 +24,7 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
             var ulTag=$(".carousel > ul"),
                 li=ulTag.find('li'),
         	    left_dis=(ulTag.width())/3;
+            console.log(ulTag.find('li').length);
             li.width(left_dis);
             console.log(ulTag.width());
             console.log(left_dis);
@@ -43,15 +42,13 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
                timer,
                Imgs=$(".carousel > ul").find("li"),
                dis=$(".disc").find("li");
-
-           
+               console.log('!');
            var d=-left_dis;
            function handler(){
                i++;
                if(i > liNum - 1){
 	               	i=0;
                }
-
                if(i == 0){
 	                	ulTag.css({"margin-left":"0px"});
 	                }else{
@@ -59,12 +56,10 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 	                }
 
 	           	dis.eq(i).addClass("selected")
-	           	       .siblings().removeClass("selected");
-
+	           	       .siblings().removeClass("selected")
 
            }     
-           
-              
+                       
            timer=setInterval(handler,2000);
 
            /*鼠标移动触发事件*/
@@ -73,6 +68,7 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 
                 dis.click(function(){
                     var _this=$(this);
+
                     /*取得当前位置的图片*/
                     i=_this.attr("index");
 	                _this.addClass('selected')
@@ -94,11 +90,14 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
         
         /*获取首页轮播的图片*/
         getCarousel:function(){
+
         	 request.post(
                 _api.loadbigpic,
                 {},
                 function(res){
                 	$(".carousel").html(juicer(funcTpl(index.carouselTpl),res));
+                	index.carouselCss();
+	                index.carousel();
                 }
             );
         },
@@ -108,9 +107,9 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 			/*
 			<ul class="carousel_con">
 	   
-				{@each data.bigpiclist as item}
+				{@each data.data as item}
 					<li class="pic">
-					    <img src=${item.pic_link}>
+					    <img src=/institute/upload/${item}>
 				    </li>
 	            {@/each}
 
@@ -118,46 +117,6 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 			*/
 		},
 
-		carouselTpl_1:function(){
-
-			/*
-			<ul class="carousel_con">
-	   
-                    <li class="pic">
-	                    <img src="/img/page/ca_1.png">
-                    </li>	   
-					<li class="pic">
-					    <img src="/img/page/ca_2.png">
-				    </li>
-				    <li class="pic">
-					    <img src="/img/page/ca_1.png">
-                    </li>
-	        </ul>
-			*/
-		},
-        
-
-		disTpl:function(){
-			
-			/*
-			
-			{@each data.paperlist as item}
-				<li>
-					<div class="div">
-						<div class="img">
-							<img src="${item.picture.link}">
-						</div>
-						<div class="topic">
-						    <span class="paperListId" style="display:none">${item.id}</span>
-							<p class="paper_title">${item.title}</p>
-							<p class="author">by ${item.author}</p>
-						</div>
-					</div>
-                </li>
-            {@/each}
-
-			*/
-		},
 
 		papers_look:function(){
 			$(".topic").hover(function(){
@@ -193,19 +152,40 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
                 	$(".display > ul").append(tmp);   //dom节点是加载在html中的
                 	index.papers_look();
                 	index.paperTurn();
+                	console.log(res);
                 }
             );
         },
 
+        disTpl:function(){
+			/*
+			
+			{@each data.paperlist as item}
+				<li>
+					<div class="div">
+						<div class="img">
+							<img src=/institute/upload/${item.picture}>
+						</div>
+						<div class="topic">
+						    <span class="paperListId" style="display:none">${item.id}</span>
+							<p class="paper_title">${item.title}</p>
+							<p class="author">by ${item.author}</p>
+						</div>
+					</div>
+                </li>
+            {@/each}
+
+			*/
+		},
+
 		newTpl:function(){
            /*
-             
              <div class="news_list">
                 {@each data.newslist as item}
 	             <div class="news_item">
 	                 <p class="news_id" style="display:none">${item.id}</p>
 		             <div class="img">
-			             <img src=${item.picture.link}>
+			             
 		             </div>
 		             <div class="detail">
 			             <p class="news_head">
@@ -267,16 +247,18 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
         },
 
 		getNewsData:function(){
+
 			request.post(
                 _api.listnews,
                 {
                 	"identify":"index"
                 },
                 function(res){
-	               
-	                $(".news > .c").append(juicer(funcTpl(index.newTpl),res));
+	                var tmp=juicer(funcTpl(index.newTpl),res);
+	                $(".c").append(tmp);
 	                index.news_look();
 	                index.newsTurn();
+	                console.log(res);
                 }
 			);
 		}

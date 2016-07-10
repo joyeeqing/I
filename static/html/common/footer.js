@@ -110,7 +110,7 @@
             {@each data as item}
                 <li>
                     <a href="#">
-                        <img src=${item.picture.link}>
+                       
                         <span class="about_name">${item.name}</span>
                     </a>
                 </li>
@@ -121,10 +121,12 @@
     var tplToString=tpl.toString().replace(/^[^\/]+\/\*!?/, '').replace(/\*\/[^\/]+$/, '');
     
     /*获取相关页面数据*/
-    $.get(
+    $.post(
             _api.listdepartment,
+            {},
             function(res){
-                $(".about > ul").html(juicer(tplToString,res));
+                var tmp=juicer(tplToString,res);
+                $(".about > ul").html(tmp);
             }
         );
 

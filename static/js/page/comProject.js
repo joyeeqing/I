@@ -20,7 +20,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
             {@each data.completedachieve as item}
                 <div class="item">
                     <span class="product_no h item_1">${item.type}</span>
-                    <span class="manage h item_2">${item.laeder}</span>
+                    <span class="manage h item_2">${item.leader}</span>
                     <span class="product_name h item_3">${item.title}</span>
                     <span class="date h item_4">${item.deadline}</span>
                 </div>
@@ -40,6 +40,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                 	
                 	$(".product_content")
                     .html(juicer(funcTpl(comProject.tpl),res));
+                    console.log(res);
                 }
      		);
      	}

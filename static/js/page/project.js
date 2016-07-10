@@ -30,13 +30,13 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		onTpl:function(){
 	        
 	        /*
-	            {@each data.doingdachieve as onData}
+	            {@each data.doingdachieve as item}
 		        <div class="item">
-		            <span class="product_id" style="display:none">${onData.id}</span>
-			        <span class="product_no h item_1">${onData.type}</span>
-			        <span class="manage h item_2">${onData.laeder}</span>
-			        <span class="product_name h item_3">${onData.title}</span>
-			        <span class="date h item_4">${onData.deadline}</span>
+		            
+			        <span class="product_no h item_1">${item.type}</span>
+			        <span class="manage h item_2">${item.leader}</span>
+			        <span class="product_name h item_3">${item.title}</span>
+			        <span class="date h item_4">${item.deadline}</span>
 		        </div>
                 {@/each}
 	        */
@@ -61,7 +61,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
               {@each data.completedachieve as comData}
 	            <div class="item">
 			        <span class="product_no h item_1">${comData.type}</span>
-			        <span class="manage h item_2">${comData.laeder}</span>
+			        <span class="manage h item_2">${comData.leader}</span>
 			        <span class="product_name h item_3">${comData.title}</span>
 			        <span class="date h item_4">${comData.deadline}</span>
 		        </div>

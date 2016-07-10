@@ -31,15 +31,15 @@ body {
   height: 500px;
   overflow: hidden;
   position: relative; }
-  .carousel ul {
+  .carousel .carousel_con {
     width: 300%;
     height: 490px;
     overflow: hidden; }
-    .carousel ul li {
+    .carousel .carousel_con li {
       overflow: hidden;
       height: 490px;
       float: left; }
-      .carousel ul li img {
+      .carousel .carousel_con li img {
         display: block;
         width: 100%;
         height: 490px; }
@@ -127,7 +127,7 @@ body {
         margin-left: 15px;
         cursor: default; }
       .news p[class="title"] span:last-child {
-        margin-left: 60%;
+        margin-left: 50%;
         cursor: default; }
   .news .c {
     width: 100%;
@@ -161,7 +161,7 @@ body {
               font-size: 22px;
               color: #222; }
             .news .c .news_list .news_item .detail .news_head span[class="date"] {
-              margin-left: 40%;
+              margin-left: 20%;
               font-size: 16px;
               color: #a4c3c4; }
           .news .c .news_list .news_item .detail .news_detail {

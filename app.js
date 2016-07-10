@@ -3,6 +3,7 @@ var path = require('path');
 var koa = require('koa');
 var serve = require('koa-static');
 var router = require('koa-router')();
+var proxy  = require('koa-proxy');
 
 /*var mock_wxy = require('./mock/wxy/index.js');*/
 
@@ -20,6 +21,10 @@ app.use(serve(path.resolve(__dirname, viewDir), {
 // mock_wxy(router, app);
 
 app.use(router.routes());
+
+app.use(proxy({
+	host: 'http://172.22.1.94'
+}));
 
 app = http.createServer(app.callback());
 

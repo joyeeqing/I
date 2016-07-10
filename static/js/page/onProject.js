@@ -42,6 +42,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                     console.log(res);
                 	$(".product_content")
                     .html(juicer(funcTpl(onProject.tpl),res));
+                   
                 }
      		);
      	}

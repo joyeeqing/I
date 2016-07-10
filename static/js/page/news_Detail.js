@@ -86,13 +86,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		newsPage:function(page){
 			
 			var newsPages=$(".news_content");
-			
 			newsPages.eq(page-1).show().siblings().hide();
-			/*var $content=$(".content");
-			console.log($content);
-			content=$content.get(0);
-			console.log(typeof content);
-			content.scollIntoView(true);*/
 			$(".footer > p").find(".page").val(page);
 		},
 
