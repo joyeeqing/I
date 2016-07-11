@@ -67,12 +67,13 @@
 	float:left;
 }
 #content_text{
-	text-overflow:ellipsis;
-	height:690px;
-	font-size:16px;
-	line-height:28px;
+	overflow:hidden;
+	height:520px;
+	font-size:14px;
+	line-height:20px;
 	margin-top:40px;
 	width:100%;
+	//padding:0px;
 }
 .tag{
 	width:100%;
