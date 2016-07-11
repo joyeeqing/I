@@ -32,7 +32,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 
 	getData:function(){
 		request.post(
-                'http://rap.taobao.org/mockjs/4112/institute/paper/readpaper.do',
+                _api.readpaper,
                 {id:1},
                 function(res){
                     $(".content").append(funcTpl(dissertation.textTpl));
