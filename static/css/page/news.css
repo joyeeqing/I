@@ -42,9 +42,11 @@ body, ul, a, .news, .news .news_list .news_item .detail, .addMore {
     .news .news_list .news_item {
       width: 100%;
       height: 170px; }
-      .news .news_list .news_item .img {
+      .news .news_list .news_item img {
         float: left;
-        margin: 33px 0 0 0; }
+        margin: 33px 0 0 0;
+        width: 150px;
+        height: 106px; }
       .news .news_list .news_item .detail {
         padding: 33px 0 0 200px;
         width: 100%;

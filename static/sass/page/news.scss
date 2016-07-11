@@ -49,9 +49,11 @@ body,ul,a{
 		    .news_item{
 			    width:100%;
 			    height:170px;
-			    .img{
+			    img{
 				    float:left;
                     margin:33px 0 0 0;
+                    width:150px;
+	                height:106px; 
 		        }
 			    .detail{
 			        @extend %px;

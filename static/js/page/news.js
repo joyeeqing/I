@@ -12,8 +12,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 
     	init:function(){
            news.getNewsData();
-           news.loadMore();
-           
+           news.loadMore();  
     	},
 
         /*阅读原文鼠标事件*/
@@ -46,8 +45,8 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                 _api.listnews,
                 {
                 	"identify":"news",
-                	"page_id":page,
-                	"page_size":6
+                	"pageNow":page,
+                	"pageSize":1
                 },
                 function(res){
                 	console.log(res);
@@ -61,6 +60,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
         
         /*加载更多新闻*/
     	loadMore:function(){
+            var originTpl=$(".news").html();
     		$("#add").click(function(){
     			page++;
     			console.log(page);
@@ -69,11 +69,12 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 	                {
 	                	"identify":"news",
 	                	"page_id":page,
-	                	"page_size":6
+	                	"page_size":1
 	                },
 	                function(res){
-	                	
-	                	$(".news").append(juicer(funcTpl(news.newsTpl),res)).show('normal');
+	                	var otpl=$(".news").html();
+                        var tpl=juicer(funcTpl(news.newsTpl),res)
+	                	$(".news").html(otpl+tpl).show('normal');
                         news.mouseEvent(); 
 	                }
     			);
@@ -87,7 +88,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                  <div class="news_item">
                      <p class="news_id" style="display:none">${item.id}</p>
                      <div class="img">
-                         <img src=${item.picture.link}>
+                         <img src=/institute/upload/${item.picture.link}>
                      </div>
                      <div class="detail">
                          <p class="news_head">

@@ -95,10 +95,12 @@ body,ul,span{
 				    border-bottom:6px solid #497d92;
 				    .h{
 					    height:144px;
+					    
 					    display:inline-block;
                         display:-moz-inline-block;
                         text-align:center;
                         line-height:144px;
+                        span:inline-block;
 				    }
 				    .item_1{
 					    color:#497d92;
@@ -151,7 +153,7 @@ body,ul,span{
 }
 
 .product_no{
-    width:160px; 
+    width:160px;
 }
 .manage{
     width:125px;

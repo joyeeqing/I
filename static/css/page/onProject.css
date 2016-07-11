@@ -75,7 +75,8 @@ body, ul, span, .main, .main .content, .main .content .product, .main .content .
             display: inline-block;
             display: -moz-inline-block;
             text-align: center;
-            line-height: 144px; }
+            line-height: 144px;
+            span: inline-block; }
           .main .content .product .product_content .item .item_1 {
             color: #497d92;
             font-weight: bold;

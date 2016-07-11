@@ -110,7 +110,7 @@
             {@each data as item}
                 <li>
                     <a href="#">
-                       
+                        <img src=/institute/upload/${item.picture.link}>
                         <span class="about_name">${item.name}</span>
                     </a>
                 </li>

@@ -6,7 +6,7 @@ require.config({
 	baseUrl:MIS.STATIC_ROOT
 });
 require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, request,funcTpl){
-
+     var page=1;
      var comProject={
 
      	init:function(){
@@ -33,8 +33,8 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
      		request.post(
                 _api.listcompletedachieve,
                 {
-                	"page_id":1,
-                	"page_size":6
+                	"pageNow":1,
+                	"pageSize":6
                 },
                 function(res){
                 	
@@ -43,8 +43,24 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                     console.log(res);
                 }
      		);
-     	}
-
+     	},
+        /*加载更多*/
+        loadMore:function(){
+            
+            $(".more").click(function(){
+                page++;
+                request.post(
+                    _api.listcompletedachieve,
+                    {
+                        "pageNow":page,
+                        "pageSize":6
+                    },
+                    function(res){
+                        $(".product_content").html();
+                    }
+                    );
+            });
+        }
      	
      };
 

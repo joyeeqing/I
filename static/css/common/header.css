@@ -68,7 +68,9 @@
         .common_header .about ul li a {
           display: block; }
           .common_header .about ul li a img {
-            display: block; }
+            display: block;
+            width: 150px;
+            height: 105px; }
           .common_header .about ul li a .about_name {
             display: block;
             font-size: 24px;

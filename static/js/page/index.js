@@ -185,7 +185,7 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 	             <div class="news_item">
 	                 <p class="news_id" style="display:none">${item.id}</p>
 		             <div class="img">
-			             
+			             <img src=/institute/upload/${item.picture.link}>
 		             </div>
 		             <div class="detail">
 			             <p class="news_head">

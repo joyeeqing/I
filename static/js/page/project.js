@@ -30,7 +30,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		onTpl:function(){
 	        
 	        /*
-	            {@each data.doingdachieve as item}
+	            {@each data.doingachieve as item}
 		        <div class="item">
 		            
 			        <span class="product_no h item_1">${item.type}</span>
@@ -75,7 +75,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                 _api.listallachieve,
                 {},
                 function(res){
-                	
+                	console.log(res);
                 	$("#product_complete .product_content").html(juicer(funcTpl(product.comTpl),res));
                 }
             );
