@@ -7,6 +7,7 @@ require.config({
 });
 require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, request,funcTpl) {
     var page=1,
+        pageSize=3,
         newsId;    
     var news={
 
@@ -26,7 +27,6 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
         	});
         },
   	 
-
     	setStorage:function(id){
             localStorage.setItem("newsId",id);
             location.assign("news_Detail.html");
@@ -46,7 +46,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                 {
                 	"identify":"news",
                 	"pageNow":page,
-                	"pageSize":1
+                	"pageSize":pageSize
                 },
                 function(res){
                 	console.log(res);
@@ -60,7 +60,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
         
         /*加载更多新闻*/
     	loadMore:function(){
-            var originTpl=$(".news").html();
+
     		$("#add").click(function(){
     			page++;
     			console.log(page);
@@ -68,13 +68,13 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 	                _api.listnews, 
 	                {
 	                	"identify":"news",
-	                	"page_id":page,
-	                	"page_size":1
+	                	"pageNow":page,
+	                	"pageSize":pageSize
 	                },
 	                function(res){
-	                	var otpl=$(".news").html();
+	                	
                         var tpl=juicer(funcTpl(news.newsTpl),res)
-	                	$(".news").html(otpl+tpl).show('normal');
+	                	$(tpl).appendTo(".news").show('normal');
                         news.mouseEvent(); 
 	                }
     			);

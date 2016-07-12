@@ -38,7 +38,6 @@
   color: white; }
 
 .headpic {
-  padding-top: 80px;
   color: white;
   width: 240px;
   height: 313px;
@@ -48,13 +47,16 @@
   -webkit-box-shadow: 10px 10px 4px #888888;
   -moz-box-shadow: 10px 10px 4px #888888;
   box-shadow: 5px 5px 15px #888888; }
+  .headpic img {
+    width: 100%;
+    height: 100%; }
 
 .black {
   background-color: black;
   width: 240px;
   height: 313px;
   position: absolute;
-  margin-top: -90px;
+  margin-top: -303px;
   margin-left: -10px;
   display: none;
   opacity: 0.5;
@@ -65,16 +67,21 @@
   margin-left: 40px;
   font-size: 22px;
   z-index: 100;
+  margin-top: -200px;
   position: absolute; }
 
 .info {
   margin-left: 40px;
-  margin-top: 70px;
+  margin-top: -170px;
   font-size: 16px;
   line-height: 35px;
   z-index: 100;
   width: 180px;
   position: absolute; }
+
+.profile {
+  display: none;
+  margin-top: -140px; }
 
 .tag {
   width: 100%;
@@ -128,9 +135,6 @@
   .detial_info img {
     float: right;
     margin-top: -80px; }
-
-.profile {
-  display: none; }
 
 #content {
   height: 850px; }

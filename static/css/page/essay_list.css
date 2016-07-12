@@ -12,6 +12,8 @@
 
 .outer {
   width: 100%;
+  maring: 0;
+  padding: 0;
   margin-top: 14px;
   border-top: solid 9px #54bfbc;
   color: black; }
@@ -37,21 +39,30 @@
   background-color: #54bfbc;
   color: white;
   float: left;
-  margin-bottom: 60px; }
+  margin-bottom: 40px;
+  position: relative; }
+
+.child_title {
+  width: 100px;
+  height: 30px;
+  display: block;
+  color: #060606;
+  font-size: 24px;
+  position: absolute; }
 
 .title {
   clear: both;
   background-color: #497D92;
   width: 100%;
-  height: 45px;
+  height: 42px;
   color: white;
   line-height: 58px;
   padding-left: 44px; }
 
 .title div {
   border-left: solid 2px white;
-  font-size: 18px;
-  line-height: 45px;
+  font-size: 20px;
+  line-height: 42px;
   float: left;
   text-align: center; }
 
@@ -66,40 +77,53 @@
 
 #content li {
   border-bottom: solid 6px #497D92;
-  height: 140px; }
+  height: 145px;
+  width: 100%;
+  cursor: default; }
+  #content li span {
+    display: inline-block;
+    display: -moz-inline-block; }
   #content li .index {
     line-height: 140px;
-    margin-left: 10px;
+    margin-left: 20px;
     color: #497D92;
     font-size: 20px;
     float: left; }
   #content li .author {
-    margin-left: 50px;
+    width: 120px;
+    margin-left: 13px;
     font-size: 16px;
     line-height: 140px;
-    float: left; }
+    float: left;
+    text-align: center; }
   #content li .name {
     color: #383838;
-    width: 700px;
+    width: 69%;
     float: left;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 400;
-    margin: 20px 0 10px 60px;
-    line-height: 18px; }
-    #content li .name #h1 {
+    line-height: 18px;
+    height: 140px;
+    padding-left: 5px;
+    text-align: left; }
+    #content li .name span {
+      margin: 0;
       color: #497D92;
       font-size: 20px;
-      display: block; }
-    #content li .name #h2 {
+      display: block;
+      width: 100%;
+      height: 30%;
+      padding-top: 10px;
+      cursor: pointer; }
+    #content li .name .h2 {
       color: #497D92;
       font-size: 14px;
-      display: block;
       margin-top: 10px; }
   #content li .time {
     line-height: 140px;
     color: #497D92;
     float: right;
-    margin-right: 20px; }
+    width: 158px; }
 
 .load {
   margin: 0 auto;

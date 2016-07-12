@@ -6,12 +6,14 @@ require.config({
 	baseUrl:MIS.STATIC_ROOT
 });
 require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, request,funcTpl){
-     var page=1;
+     var page=1,
+         pageSize=1;
      var comProject={
 
      	init:function(){
 	        $(".product_content").append(funcTpl(comProject.tpl));
 	        comProject.getComData();
+            comProject.loadMore();
      	},
 
         tpl:function(){
@@ -34,7 +36,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                 _api.listcompletedachieve,
                 {
                 	"pageNow":1,
-                	"pageSize":6
+                	"pageSize":pageSize
                 },
                 function(res){
                 	
@@ -53,10 +55,12 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                     _api.listcompletedachieve,
                     {
                         "pageNow":page,
-                        "pageSize":6
+                        "pageSize":pageSize
                     },
                     function(res){
-                        $(".product_content").html();
+                        var tpl=juicer(funcTpl(comProject.tpl),res)
+                        $(tpl).appendTo(".product_content").show('normal');
+                        
                     }
                     );
             });

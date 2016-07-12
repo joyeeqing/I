@@ -20,18 +20,18 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 
 		headerTpl:function(){
 			/*
-		    {@each data.personlist as it,index}
+		    {@each data.person as item}
 		    	<li>
-		    		<div class="headpic" style="background-image:url(/img/page/head.png)">
-
+		    		<div class="headpic" >
+                        <img src=/institute/upload/${item.picture.link}>
 		    			<span class="black"></span>
-		    			<span class="name">姓名：${it.name}<br/></span>
+		    			<span class="name">姓名：${item.name}<br/></span>
 		    			<span class="info">
-		    				方向：${it.major}<br/>
-		    				专业：${it.majorin}<br/>
+		    				方向：${item.xibie}<br/>
+		    				专业：${item.zhicheng}<br/>
 		    			</span>
 		    			<span class="profile">
-		    				个人简介：${it.profile}
+		    				个人简介：${item.jianjie}
 		    			</span>
 		    		</div>
 		    	</li>
@@ -106,12 +106,16 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		getData:function(i){
 			request.post(
 				_api.listLeaders,
-				{page_id:1,page_size:6},
+				{
+					"pageNow":1,
+					"pageSize":6
+				},
 				function(res){
 					js=res;
             		var tpl=juicer(funcTpl(leader.headerTpl),res);
             		$('#content').html('<div class="detial_info"></div>'+tpl);
             		$('.headpic>span').hide();
+            		console.log(res);
 					}
 				);
 		},

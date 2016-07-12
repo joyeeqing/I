@@ -22,7 +22,7 @@ var _api={
     /*成员、已毕业、学术带头*/
 
     //学术带头人
-    listLeaders:'/institute/person/listperson.do',
+    listLeaders:'/institute/person/listLeader.do',
     //已毕业成员
     listGrads:'/institute/person/listperson.do',
     //成员介绍

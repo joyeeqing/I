@@ -1,7 +1,7 @@
 @import '../common/global-set';
 .outer{
 	width:100%;
-	margin-top:18px;
+	margin-top:14px;
 	border-top: solid 9px #54BEB2;
 	color:black;
 }
@@ -23,9 +23,11 @@
 	font-size:22px;
 	text-align:center;
 	font-weight:500;
-	background-color:#54BEB2;
+	background-color:#54bfbc;
 	color:white;
 	float:left;
+	
+	position:relative;
 }
 .list img{
 	margin:15px 15px 54px 15px;
@@ -55,10 +57,32 @@
 	font-size:22px;
 	line-height:58px;
 	width:908px;
+	margin-top:40px;
+}
+.list_text{
+	width:164px;
+	height:47px;
+	line-height:47px;
+	font-size:22px;
+	text-align:center;
+	font-weight:500;
+	position:relative;
+	background-color:#54BEB2;
+	color:white;
+	.child-title{
+	    width:200px;
+	    height:30px;
+	    color:#666;
+	    font-size:20px;
+	    line-height:30px;
+		position:absolute;
+	    top:10px;
+	    left:150px;
+	}
 }
 .content{
 	width:1042px;
-	margin-top:15px;
+	margin-top:40px;
 	overflow:hidden;
 	margin-bottom:30px;
 }
@@ -103,6 +127,8 @@
 }
 .tag input{
 	float:left;
+	border:0;
+	
 	height:24px;
 	width:25px;
 	font-size:20px;

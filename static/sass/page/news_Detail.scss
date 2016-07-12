@@ -26,21 +26,33 @@ body,ul,span{
 	height:36px;
 }
 .list_text{
-	
 	width:164px;
 	height:47px;
 	line-height:47px;
 	font-size:22px;
 	text-align:center;
 	font-weight:500;
+	position:relative;
 	background-color:#54BEB2;
 	color:white;
+	.child_title{
+	    width:200px;
+	    height:30px;
+	    color:#666;
+	    font-size:20px;
+	    line-height:30px;
+		position:absolute;
+	    top:10px;
+	    left:150px;
+	}
 }
 	.content{ 
 		width:1042px;
-		height:1005px;
+		height:auto;
+
 		@extend %px;
 		margin:0 auto;
+		margin-bottom:40px;
 		.news_title{
 		    margin-top:34px;
 			width:1042px;
@@ -133,16 +145,18 @@ body,ul,span{
 				
 			}
 			#behind{
-	            a{
+	            
 		            display:inline-block;
-		            color:#060606;
-	            }
+		            color:white;
+		            text-decoration:none;
+	            
 			}
 			#font{
-	            a{
+	            
 		            display:inline-block;
-		            color:#060606;
-	            }
+		            color:white;
+		            text-decoration:none;
+	            
 			}
 			a:hover{
 				color:#060606;

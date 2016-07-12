@@ -6,12 +6,12 @@ require.config({
 	baseUrl: MIS.STATIC_ROOT
 });
 require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, request,funcTpl) {
+	var proId;
 	var dissertation={
 
 	init:function(){
+		dissertation.getProId();
 		dissertation.getData();
-		//dissertation.showText();
-		
 	},
 	
 	textTpl:function(){
@@ -29,12 +29,20 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		</div>
     	*/
 	},
+    getProId:function(){
+     
+	    proId=localStorage.getItem("proId");
+	    console.log(proId);
+    },
 
 	getData:function(){
 		request.post(
                 _api.readpaper,
-                {id:1},
+                {
+                	"id":proId
+                },
                 function(res){
+                	console.log(res);
                     $(".content").append(funcTpl(dissertation.textTpl));
             		var value=res.data.paper;
             		$('#title_text').append(value.title);
@@ -42,33 +50,40 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
             		$('#text_author').append(value.author);
             		$('#content_text').append(value.content);
             		var obj=$('#content_text')[0];
-					var all=Math.ceil(parseInt(obj.scrollHeight)/ parseInt(obj.offsetHeight));
+					var all=Math.ceil(parseInt(obj.scrollHeight)/ parseInt(obj.clientHeight));
 					var i=parseInt($('#tag_nub').val());
 					$('#btn2').on('click',function(event){
 							if(i<all){
-								i=i+1;
-								obj.scrollTop=(i-1)*parseInt(obj.offsetHeight);
-								$('#tag_nub').val(i);
-								$('#btn1').css({"color":"white","cursor":"pointer"});
-								if(i==all){
-									$('#btn2').css({"color":"#e3e3e3","cursor":"not-allowed"});
-									return false;
-								};
+
+							i++;
+							obj.scrollTop=(i-1)*parseInt(obj.offsetHeight);
+							$('#tag_nub').val(i);
+							$('#btn1').css({"color":"white","cursor":"pointer"});
+						
+							}else if(i==all){
+
+								$('#btn2').css({"color":"#e3e3e3","cursor":"not-allowed"});
+								return false;
+							}else{
 								return false;
 							}
+							
+
 						});
 					$('#btn1').on('click',function(event){
 							if(i>1){
-								i=i-1;
-								obj.scrollTop=(i-1)*parseInt(obj.offsetHeight);
-								$('#tag_nub').val(i);
-								$('#btn2').css({"color":"white","cursor":"pointer"});
-								if(i==1){
-									$('#btn1').css({"color":"#e3e3e3","cursor":"not-allowed"});
-									return false;
-								};
+							i=i-1;
+							obj.scrollTop=(i-1)*parseInt(obj.offsetHeight);
+							$('#tag_nub').val(i);
+							$('#btn2').css({"color":"white","cursor":"pointer"});
+							}else if(i==1){
+								$('#btn1').css({"color":"#e3e3e3","cursor":"not-allowed"});
+								return false;
+							}else{
 								return false;
 							}
+								
+							
 						});
                     }
                 );	

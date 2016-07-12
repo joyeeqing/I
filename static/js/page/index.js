@@ -7,13 +7,12 @@ require.config({
 	baseUrl: MIS.STATIC_ROOT
 });
 require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, request,funcTpl) {
-	var paperListId,newsId;
+	var proId,newsId;
 	var index = {
 		
 		init:function(){
 			
-			index.getCarousel();
-	        
+			index.getCarousel();  
 	        index.getPaperData();
 	        index.getNewsData();
 	        
@@ -129,14 +128,14 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 		},
         
         requestPaperId:function(){
-	        localStorage.setItem("paperId",paperListId);
-	        location.assign("essay_list.html");
+	        localStorage.setItem("proId",proId);
+	        location.assign("dissertation.html");
         },
 
         /*点击论文跳转阅读原文*/
         paperTurn:function(){
         	$(".papers").on("click","li",function(){
-        		paperListId=$(this).find("paperListId").html();
+        		proId=$(this).children().find(".paperListId").html();
         		index.requestPaperId();
         	});
         },
@@ -163,6 +162,7 @@ require(['lib/jquery','util/request','util/funcTpl','lib/juicer'], function($, r
 			{@each data.paperlist as item}
 				<li>
 					<div class="div">
+
 						<div class="img">
 							<img src=/institute/upload/${item.picture}>
 						</div>

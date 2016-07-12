@@ -1,5 +1,5 @@
 /*
-*@qingfan
+* @qingfan
 *
 */
 require.config({
@@ -9,7 +9,8 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
     var newsId,
         page,
         totalPages,
-        startPage;
+        pageNow;
+        
 	var new_Detail={
 
 		init:function(){
@@ -22,8 +23,8 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		getDetailId:function(){
               newsId=localStorage.getItem("newsId");
 		},
-
-		getOneNews:function(){
+        
+        getOneNews:function(){
 	        request.post(
                 _api.readnews,
                 {
@@ -33,113 +34,71 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                     
                     $(".content").html(juicer(funcTpl(new_Detail.detailTpl),res));
 
-                	var caseNewsArr=[],
-                	    content,
-                	    count,
-                	    start,
-                	    end;
+                	$("#contentList > .news_content").append(res.data.news.content);
 
-                    content=res.data.news.content;
-                    start=0;
-                    page=1;
-                    count=1716;
-                    temp=1716; 
-                    startPage=1;
-                    end=content.toString().length;
-                    totalPages=Math.ceil(end/count);
-                    var pageInput=$(".footer > p").find(".page");
-
-                    for(var i = 0; i < totalPages; i++){
-                    	if(i == totalPages-1){
-	                        caseNewsArr.push(content.substring(start,end));
-                    	}else{
-                    		caseNewsArr.push(content.substring(start,temp));
-                    	}
-                    	temp +=count;
-	                    start += count;
-                    }
-
-                    var caseNewsArrData = {
-
-                    	"caseNewsList":caseNewsArr
-                    };
-                    
+                    var allData=$("#contentList > .news_content")[0],
+                        totalPages=Math.ceil(parseInt(allData.scrollHeight)/parseInt(allData.clientHeight)),
+                        pageInput=$(".footer > p").find(".page");
                     var pageData = {
 
                         "casePage":totalPages
                     };
-
-                    var caseNewTpl=juicer(funcTpl(new_Detail.cTpl),caseNewsArrData);
-                    $(".content").append(caseNewTpl);
-
+                    console.log(totalPages);
                     $(".footer").append(juicer(funcTpl(new_Detail.footerTpl),pageData));
-                    new_Detail.turnCss();                    
-                    pageInput.val(page);
-                    new_Detail.newsPage(page);
-                    
-                    new_Detail.turnPage();
-                }
-	        );
+                    pageNow=$(".page").val();
+                    // 跳转下一页
+		        	$('#behind').on('click',function(event){
+
+						if(pageNow<totalPages){
+
+			                pageNow++;
+							allData.scrollTop=(pageNow-1)*parseInt(allData.offsetHeight);
+							$('.page').val(pageNow);
+							$('#font').css({"color":"white","cursor":"pointer"});
+					
+						}else if(pageNow==totalPages){
+
+							$('behind').css({"color":"#e3e3e3","cursor":"not-allowed"});
+							return false;
+
+						}else{
+
+							return false;
+						}
+						
+					});
+
+			        // 跳转上一页
+					$('#font').on('click',function(event){
+
+							if(pageNow>1){
+
+								pageNow--;
+								obj.scrollTop=(pageNow-1)*parseInt(obj.offsetHeight);
+								$('.page').val(pageNow);
+								$('#behind').css({"color":"white","cursor":"pointer"});
+
+							}else if(pageNow==1){
+
+								$('#font').css({"color":"#e3e3e3","cursor":"not-allowed"});
+								return false;
+
+							}else{
+								return false;
+							}
+								
+							
+						});
+			    }
+			);
 		},
 
-		//新闻页面显示
-		newsPage:function(page){
-			
-			var newsPages=$(".news_content");
-			newsPages.eq(page-1).show().siblings().hide();
-			$(".footer > p").find(".page").val(page);
-		},
+        dis:function(){
 
-		turnPage:function(){
+            var allData=$("#contentList > .news_content");
 
-			$("#font>a").click(function(){
-                				
-				new_Detail.newsPage(new_Detail.lastPage());
-			});
-
-			$("#behind>a").click(function(){
-				
-				new_Detail.newsPage(new_Detail.nextPage());
-			});
-		},
-
-		nextPage:function(){
-            $("#behind>a").css({"color":"#060606"});
-	        /* 判断是否到最后一页 */
-			if(page == totalPages&&page == startPage) {
-                 
-				$("#behind>a").css({"color":"#e3e3e3","cursor":"not-allowed"});
-				$("#font>a").css({"color":"#e3e3e3","cursor":"not-allowed"});				
-				return totalPages;
-
-			} else if(page == totalPages && page !== startPage){
-                $("#behind>a").css({"color":"#e3e3e3","cursor":"not-allowed"});
-                return totalPages;
-			}else {
-				$("#font>a").css({"color":"#060606","cursor":"default"});
-				return ++ page;
-			}
-		},
-
-		lastPage:function(){
-	       $("#font>a").css({"color":"#060606"});
-
-	        /* 判断是否到初始页 */
-			if(page == startPage && page == totalPages) {
-                $("#behind>a").css({"color":"#e3e3e3","cursor":"not-allowed"});
-				$("#font>a").css({"color":"#e3e3e3","cursor":"not-allowed"});	
-				return startPage;
-
-			} else if(page == startPage && page !== totalPages){
-               $("#font>a").css({"color":"#e3e3e3","cursor":"not-allowed"});	
-               return startPage;
-
-			}else {
-				$("#behind>a").css({"color":"#060606","cursor":"default"});
-				return -- page;
-			}
-            		
-		},
+            
+        },
 
 		detailTpl:function(){
 	        
@@ -154,70 +113,20 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
                             <span>作者：${data.news.publisher}</span>
 			            </p>
 	                </div>
+	                <div id="contentList">
+		                <div class="news_content">
+
+		                </div>
+	                </div>
 	        */
-		},
-
-		cTpl:function(){
-	        
-	        /*
-	        <div class="contentList">
-		        {@each caseNewsList as newsCase}
-			        <div class="news_content">
-			                <p>
-				                ${newsCase}
-			                </p>
-		            </div>
-		        {@/each}
-
-	        </div>
-	        */
-		},
-
-		turnCss:function(){
-
-			/*跳转页面样式*/
-	        $("#font>a").hover(function(e){
-	        	if(page == startPage){
-
-	        	}else{
-	        		$(this).css({"color":"#fff"});
-	        	}
-	            
-	        },function(e){
-	        	if(page==startPage){
-                    e.preventDefault();
-	        	}else{
-	        		$(this).css({"color":"#060606"});
-	        	}
-	            
-	        });
-
-	        $("#behind>a").hover(function(e){
-	        	
-	        	if(page == totalPages){ 
-                    e.preventDefault();
-	        	}else{
-	        		$(this).css({"color":"#fff"});
-	        	}
-	            
-	        },function(e){
-	        	
-	        	if(page==totalPages){
-                    e.preventDefault();
-	        	}else{
-	        		$(this).css({"color":"#060606"});
-	        	}
-	            
-	        });
-            
 		},
 
 		footerTpl:function(){
 			/*
 				<p>
-					<span class="text" id="font"><a href="#">上一页</a></span>
-					<span class="text">第<input class="page">页</span>
-					<span class="text" id="behind"><a href="#">下一页</a></span>
+					<span class="text"><a href="#" id="font">上一页</a></span>
+					<span class="text">第<input class="page" value="1" disabled="disabled">页</span>
+					<span class="text"><a href="#" id="behind">下一页</a></span>
 					<span class="text-1">共 ${casePage} 页</span>
 				</p>
 			*/
