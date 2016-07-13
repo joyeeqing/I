@@ -165,10 +165,11 @@
     height: 50px; }
     .common_footer_list .footer_list li {
       float: left;
-      width: 200px;
+      width: 150px;
       height: 35px;
       line-height: 35px;
-      text-align: right; }
+      text-align: right;
+      margin-left: 30px; }
       .common_footer_list .footer_list li img {
         margin-right: 30px; }
       .common_footer_list .footer_list li a {

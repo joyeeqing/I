@@ -43,22 +43,23 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 
                         "casePage":totalPages
                     };
-                    console.log(totalPages);
+                    
                     $(".footer").append(juicer(funcTpl(new_Detail.footerTpl),pageData));
-                    pageNow=$(".page").val();
+                    pageNow=parseInt($(".page").val());
+                    
                     // 跳转下一页
-		        	$('#behind').on('click',function(event){
+		        	$('#behind').on('click',function(){
 
-						if(pageNow<totalPages){
+						if(pageNow < totalPages){
 
-			                pageNow++;
-							allData.scrollTop=(pageNow-1)*parseInt(allData.offsetHeight);
+			                ++pageNow;
+							allData.scrollTop=(pageNow-1)*parseInt(allData.clientHeight);
 							$('.page').val(pageNow);
 							$('#font').css({"color":"white","cursor":"pointer"});
 					
-						}else if(pageNow==totalPages){
-
-							$('behind').css({"color":"#e3e3e3","cursor":"not-allowed"});
+						}else if(pageNow == totalPages){
+                            
+							$('#behind').css({"color":"#e3e3e3","cursor":"not-allowed"});
 							return false;
 
 						}else{
@@ -69,16 +70,16 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 					});
 
 			        // 跳转上一页
-					$('#font').on('click',function(event){
+					$('#font').on('click',function(){
 
-							if(pageNow>1){
+							if(pageNow > 1){
 
-								pageNow--;
-								obj.scrollTop=(pageNow-1)*parseInt(obj.offsetHeight);
+								--pageNow;
+								allData.scrollTop=(pageNow-1)*parseInt(allData.clientHeight);
 								$('.page').val(pageNow);
 								$('#behind').css({"color":"white","cursor":"pointer"});
 
-							}else if(pageNow==1){
+							}else if(pageNow == 1){
 
 								$('#font').css({"color":"#e3e3e3","cursor":"not-allowed"});
 								return false;
