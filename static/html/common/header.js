@@ -1,17 +1,17 @@
-(function() {
+﻿(function() {
 	"use strict"
 	var headerCss = document.getElementsByTagName('script'),
 		path, cssPath, headTitle = "";
     var temp;
 
-    temp='';
+    temp='/Institute/static';
 
 
 	for(var i = 0; i < headerCss.length; i++){
 	    cssPath = headerCss[i].getAttribute('data-css');
 		headTitle = headerCss[i].getAttribute('data-title');
 		if(cssPath != null && cssPath != undefined){
-			cssPath = '<link rel="stylesheet" href="/css/page/' + cssPath + '.css"/>'
+			cssPath = '<link rel="stylesheet" href="'+temp+'/css/page/' + cssPath + '.css"/>'
 			break;	
 		}
 
@@ -19,14 +19,14 @@
 	var html = '<!DOCTYPE html>'+
 				'<html lang="en">'+
 				'<head>'+
-					'<meta charset="UTF-8">'+
+					'<meta charset="utf-8">'+
 					'<title>'+headTitle+'</title>'+
-					'<link rel="stylesheet" href="/css/lib/bootstrap.css"/>'+
-					'<link rel="stylesheet" href="/css/global.css"/>'
+					'<link rel="stylesheet" href="'+temp+'/css/lib/bootstrap.css"/>'+
+					'<link rel="stylesheet" href="'+temp+'/css/global.css"/>'
 					+cssPath+
 					'<script>'+
 						'var MIS = {};'+
-						'MIS.STATIC_ROOT = "/js"'+
+						'MIS.STATIC_ROOT = "'+temp+'/js"'+
 					'</script>'+
 					'<script src="'+temp+'/js/lib/jquery.js"></script>'+
 					'<script src="'+temp+'/js/modules/api.js"></script>'+
@@ -40,11 +40,11 @@
 		<div class="common_header">
             
             <div class="header_con">
-			    <img src="/img/common/logo.png" class="icon_logo">
+			    <img src="/Institute/static/img/common/logo.png" class="icon_logo">
 			   
 	            <div class="common_header_search">
 		            <input type="text" value="" id="header_search"/>
-		            <img src="/img/common/search.png" id="icon_search">
+		            <img src="/Institute/static/img/common/search.png" id="icon_search">
 	            </div>
             </div>
 

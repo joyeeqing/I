@@ -47,13 +47,15 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 					leader.getData(i);
 					$('#tag_nub').val(i);
 					leader.show_info();
-					$('#btn1').css({"color":"#060606","cursor":"default"});
-					if(i==js.data.pageSum){
+					$('#btn2').css({"color":"#060606","cursor":"default"});
+				}
+				else if(i==js.data.pageSum){
 						$('#btn2').css({"color":"#e3e3e3","cursor":"not-allowed"});
 						return false;
-					};
-					return false;
+				}else{
+	                return false;
 				}
+					
 			});
 			$('#btn1').on('click',function(event){
 				if(i>1){
@@ -61,11 +63,12 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 					leader.getData(i);
 					$('#tag_nub').val(i);
 					leader.show_info();
-					$('#btn2').css({"color":"#060606","cursor":"default"});
-					if(i==1){
+					$('#btn1').css({"color":"#060606","cursor":"default"});
+				}
+				else if(i==1){
 						$('#btn1').css({"color":"#e3e3e3","cursor":"not-allowed"});
 						return false;
-					};
+				}else{
 					return false;
 				}
 			});
