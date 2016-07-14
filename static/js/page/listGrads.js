@@ -47,7 +47,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 					leader.getData(i);
 					$('#tag_nub').val(i);
 					leader.show_info();
-					$('#btn1').css('color','white');
+					$('#btn2').css('color','white');
 				}else if(i==js.data.pageSum){
 						$('#btn2').css({"color":"#e3e3e3","cursor":"not-allowed"});
 						return false;
@@ -64,7 +64,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 					leader.getData(i);
 					$('#tag_nub').val(i);
 					leader.show_info();
-					$('#btn2').css('color','white');
+					$('#btn1').css('color','white');
 				}else if(i==1){
 						$('#btn1').css({"color":"#e3e3e3","cursor":"not-allowed"});
 						return false;

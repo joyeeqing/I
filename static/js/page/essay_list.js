@@ -30,7 +30,7 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
             		<span class="author">${it.author}</span> 
             		<span class="name">
             		<span class="h1">${it.title}</span><br/>
-            		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${it.content}。。。<br/>
+            		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ${it.summary}<br/>
             		<p class="h2">【关键词】${it.keyword}</p>
             		</span>
             		<p class="time">${it.date}</p>

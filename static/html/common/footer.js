@@ -13,16 +13,16 @@
 		<div class="common_footer">
             
             <div class="common_footer_list">
-                <img src="/Institute/static/img/common/logo.png" class="icon_logo">
+                <img src="/institute/static/img/common/logo.png" class="icon_logo">
                 <ul class="footer_list">
-                    <li><a href="leader.html"><img src="/Institute/static/img/common/leader.png">学术带头人</a></li>
-                    <li><a href="listMembers.html"><img src="/Institute/static/img/common/member.png">团队成员</a></li>
-                    <li><a href="news.html"><img src="/Institute/static/img/common/new.png">新闻动态</a></li>
+                    <li><a href="leader.html"><img src="/institute/static/img/common/leader.png">学术带头人</a></li>
+                    <li><a href="listMembers.html"><img src="/institute/static/img/common/member.png">团队成员</a></li>
+                    <li><a href="news.html"><img src="/institute/static/img/common/new.png">新闻动态</a></li>
                 </ul>
                 <ul class="footer_list">
-                    <li><a href="listGrads.html"><img src="/Institute/static/img/common/gradu.png">已毕业成员</a></li>
-                    <li><a href="project.html"><img src="/Institute/static/img/common/disco.png">研究成果</a></li>
-                    <li><a href="essay_list.html"><img src="/Institute/static/img/common/paper.png">论文专著</a></li>
+                    <li><a href="listGrads.html"><img src="/institute/static/img/common/gradu.png">已毕业成员</a></li>
+                    <li><a href="project.html"><img src="/institute/static/img/common/disco.png">研究成果</a></li>
+                    <li><a href="essay_list.html"><img src="/institute/static/img/common/paper.png">论文专著</a></li>
                 </ul>
             </div>
             <div class="common_footer_ps">
@@ -48,7 +48,7 @@
 		*/
 	}
 	var footer = footerTpl.toString().replace(/^[^\/]+\/\*!?/, '').replace(/\*\/[^\/]+$/, '') +
-				'<script src="/Institute/static/js/lib/r.js" data-main="/Institute/static/js/page/' + path + '"></script>'+
+				'<script src="/institute/static/js/lib/r.js" data-main="/institute/static/js/page/' + path + '"></script>'+
 			  '</body></html>';
 	document.write(footer);
 

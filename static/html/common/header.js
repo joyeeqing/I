@@ -4,7 +4,7 @@
 		path, cssPath, headTitle = "";
     var temp;
 
-    temp='/Institute/static';
+    temp='/institute/static';
 
 
 	for(var i = 0; i < headerCss.length; i++){
@@ -40,11 +40,11 @@
 		<div class="common_header">
             
             <div class="header_con">
-			    <img src="/Institute/static/img/common/logo.png" class="icon_logo">
+			    <img src="/institute/static/img/common/logo.png" class="icon_logo">
 			   
 	            <div class="common_header_search">
 		            <input type="text" value="" id="header_search"/>
-		            <img src="/Institute/static/img/common/search.png" id="icon_search">
+		            <img src="/institute/static/img/common/search.png" id="icon_search">
 	            </div>
             </div>
 

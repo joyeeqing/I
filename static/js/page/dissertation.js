@@ -29,6 +29,15 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		</div>
     	*/
 	},
+    
+	pageText:function(){
+		/*
+			<span class="page">
+				共 ${}页
+			</span>
+		*/
+	},
+
     getProId:function(){
      
 	    proId=localStorage.getItem("proId");
@@ -49,9 +58,10 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
             		$('#text_time').append(value.date);
             		$('#text_author').append(value.author);
             		$('#content_text').append(value.content);
-            		var obj=$('#content_text')[0];
-					var all=Math.ceil(parseInt(obj.scrollHeight)/ parseInt(obj.clientHeight));
-					var i=parseInt($('#tag_nub').val());
+            		var obj=$('#content_text')[0],
+					    all=Math.ceil(parseInt(obj.scrollHeight)/ parseInt(obj.clientHeight)),
+				        i=parseInt($('#tag_nub').val());
+                    
 					$('#btn2').on('click',function(event){
 							if(i<all){
 
