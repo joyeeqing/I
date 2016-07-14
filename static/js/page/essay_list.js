@@ -94,5 +94,5 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		});
 	},
 };
-essay_list.init();
+ return  essay_list.init();
 });

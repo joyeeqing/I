@@ -11,8 +11,6 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 
 		init:function(){
 	        
-	        //$("#product_on .product_content").append(funcTpl(product.onTpl));
-	        //$("#product_complete .product_content").append(funcTpl(product.comTpl));
 		    product.mouse();
 		    product.getOnData();
 		    product.getComData();
@@ -30,10 +28,10 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		onTpl:function(){
 	        
 	        /*
-	            {@each data.doingachieve as item}
+	            {@each data.doingachieve as item,index}
 		        <div class="item">
 		            
-			        <span class="product_no h item_1">${item.type}</span>
+			        <span class="product_no h item_1">${parseInt(index)+1}</span>
 			        <span class="manage h item_2">${item.leader}</span>
 			        <span class="product_name h item_3">${item.title}</span>
 			        <span class="date h item_4">${item.deadline}</span>
@@ -58,9 +56,9 @@ require(['lib/jquery', 'util/request','util/funcTpl','lib/juicer'], function($, 
 		comTpl:function(){
               
               /*
-              {@each data.completedachieve as comData}
+              {@each data.completedachieve as comData,index}
 	            <div class="item">
-			        <span class="product_no h item_1">${comData.type}</span>
+			        <span class="product_no h item_1">${parseInt(index)+1}</span>
 			        <span class="manage h item_2">${comData.leader}</span>
 			        <span class="product_name h item_3">${comData.title}</span>
 			        <span class="date h item_4">${comData.deadline}</span>
